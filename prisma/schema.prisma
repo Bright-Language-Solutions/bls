@@ -1,0 +1,59 @@
+// Bright Language Solutions — Lead schema
+//
+// NOTE: This project's runtime persistence currently uses the native `mongodb`
+// driver against the container's standalone MongoDB (see lib/mongo.js).
+// Prisma's MongoDB provider requires a replica-set deployment which the preview
+// container does not provide. This schema is the canonical source-of-truth
+// contract for Zod validation (lib/quoteSchema.js) and for a drop-in migration
+// to real Prisma+Postgres in a future phase — `prisma migrate dev` would then
+// be the only thing needed to switch.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ServiceType {
+  TRANSLATION
+  INTERPRETATION
+  VOICEOVER
+  DUBBING
+  SUBTITLING
+  LOCALIZATION
+  TRANSCRIPTION
+  DTP
+  EDITING
+  TYPESETTING
+}
+
+enum QuoteStatus {
+  RECEIVED
+  IN_REVIEW
+  QUOTED
+  IN_PROGRESS
+  DELIVERED
+  CANCELLED
+}
+
+model Quote {
+  id           String      @id @default(cuid())
+  customerName String
+  phone        String
+  email        String?
+  serviceType  ServiceType @default(TRANSLATION)
+  sourceLang   String
+  targetLang   String
+  wordCount    Int?
+  projectDate  DateTime
+  status       QuoteStatus @default(RECEIVED)
+  whatsappSent Boolean     @default(false)
+  notes        String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@map("quotes")
+}

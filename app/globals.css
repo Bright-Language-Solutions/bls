@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* shadcn/ui tokens */
+    --background: 0 0% 100%;
+    --foreground: 215 100% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 100% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 100% 12%;
+    --primary: 213 100% 12%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 213 100% 12%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 40%;
+    --accent: 16 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 16 100% 50%;
+    --radius: 0.75rem;
+
+    /* Brand palette — light */
+    --bg: #FFFFFF;
+    --tint: #F3F6FC;
+    --tint-2: #E8EFFA;
+    --ink: #06184F;
+    --ink-2: #1B2A56;
+    --muted-c: #5A6577;
+    --rule: #E2E6EE;
+    --navy: #06184F;
+    --navy-2: #00102E;
+    --blue: #1466DB;
+    --blue-2: #0E51B4;
+    --yellow: #F5B819;
+    --yellow-2: #D89E0B;
+    --green: #10B981;
+    --gold: #F5B819;
+  }
+
+  html[data-theme="dark"], .dark {
+    --background: 222 47% 4%;
+    --foreground: 213 31% 91%;
+    --card: 217 33% 12%;
+    --card-foreground: 213 31% 91%;
+    --border: 217 19% 27%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Brand palette — dark */
+    --bg: #06112E;
+    --tint: #0B1A3D;
+    --ink: #F4F7FE;
+    --ink-2: #D7DFF1;
+    --muted-c: #95A0BD;
+    --rule: #1F2D55;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  html { scroll-padding-top: 80px; }
+}
+
+/* Utility classes */
+.font-display { font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
+.font-body    { font-family: 'Manrope', system-ui, sans-serif; }
+.font-label   { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.18em; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn.accent {
+  background: #F5B819;
+  border-color: #F5B819;
+  color: #06184F;
+  box-shadow: 0 6px 20px -8px rgba(245,184,25,.6);
+}
+.btn.accent:hover { background: #D89E0B; border-color: #D89E0B; }
+.btn.primary {
+  background: #06184F;
+  border-color: #06184F;
+  color: #fff;
+}
+.btn.primary:hover { background: #00102E; border-color: #00102E; }
+.btn.ghost {
+  background: transparent;
+  border-color: var(--rule);
+  color: var(--ink);
+}
+.btn.ghost:hover { border-color: var(--blue); }
+.btn.sm { padding: 10px 18px; font-size: 13px; }
+
+/* Cards */
+.bls-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.bls-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+}
+html[data-theme="dark"] .bls-card { background: var(--tint); }
+
+/* Keyframes */
+@keyframes marqueeMove {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,.45); }
+  50%       { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

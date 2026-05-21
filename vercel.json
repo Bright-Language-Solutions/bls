@@ -1,0 +1,18 @@
+{
+  "buildCommand": "yarn build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "env": [
+    "MONGO_URL",
+    "DB_NAME",
+    "NEXT_PUBLIC_BASE_URL",
+    "ADMIN_SECRET",
+    "WHATSAPP_PROVIDER",
+    "TWILIO_ACCOUNT_SID",
+    "TWILIO_AUTH_TOKEN",
+    "TWILIO_WHATSAPP_FROM",
+    "INTERAKT_API_KEY",
+    "WATI_API_KEY",
+    "WATI_API_ENDPOINT"
+  ]
+}
