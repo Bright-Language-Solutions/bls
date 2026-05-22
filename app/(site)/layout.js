@@ -11,7 +11,7 @@ export default function SiteLayout({ children }) {
 
       {/* Floating WhatsApp */}
       <a
-        href="https://api.whatsapp.com/send?phone=918368440255&text=Hello%20Bright"
+        href="https://api.whatsapp.com/send?phone=918368440255&text=Hello%20Bright%20Language%20Solutions"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"

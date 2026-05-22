@@ -1,9 +1,9 @@
 export const metadata = {
   title: 'Contact Us',
-  description: 'Contact Bright Language Solutions — email, phone, and office locations in Mumbai and London. Get in touch and we will reply within four hours.',
+  description: 'Contact Bright Language Solutions — email, phone, and our New Delhi office. Get in touch and we will reply within four hours.',
   openGraph: {
     title: 'Contact Us | Bright Language Solutions',
-    description: 'Contact Bright Language Solutions — email, phone, and office locations in Mumbai and London. Get in touch and we will reply within four hours.',
+    description: 'Contact Bright Language Solutions — email, phone, and our New Delhi office. Get in touch and we will reply within four hours.',
     type: 'website',
     url: '/contact',
   },
@@ -28,9 +28,9 @@ export default function ContactPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 28, marginBottom: 40 }}>
             {[
               { label: 'Email', value: 'hello@brightlanguage.in', href: 'mailto:hello@brightlanguage.in' },
-              { label: 'Phone', value: '+91 98765 43210', href: 'tel:+919876543210' },
-              { label: 'Mumbai (HQ)', value: 'Level 8, One BKC, Bandra Kurla Complex, Mumbai 400051' },
-              { label: 'London', value: '86-90 Paul Street, London EC2A 4NE' },
+              { label: 'Phone', value: '+91 83684 40255', href: 'tel:+918368440255' },
+              { label: 'WhatsApp', value: '+91 83684 40255', href: 'https://api.whatsapp.com/send?phone=918368440255&text=Hello%20Bright%20Language%20Solutions' },
+              { label: 'Address (HQ)', value: 'Plot No. 153, 1st Floor, Block-D1, Mansa Ram Park, Uttam Nagar, New Delhi - 110059' },
               { label: 'Hours', value: '24/7 producer cover for urgent briefs' },
             ].map(({ label, value, href }) => (
               <div key={label}>

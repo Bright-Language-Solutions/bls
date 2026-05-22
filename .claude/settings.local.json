@@ -4,7 +4,8 @@
       "Bash(Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue)",
       "Bash(yarn build *)",
       "PowerShell(yarn build 2>&1)",
-      "PowerShell(yarn dev)"
+      "PowerShell(yarn dev)",
+      "Bash(grep -E \"^-.*\\\\.\\(js|ts|jsx|tsx\\)$\")"
     ]
   }
 }

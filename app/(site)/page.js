@@ -830,8 +830,8 @@ export default function HomePage() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
                 {[
                   { label: 'Email', value: 'hello@brightlanguage.in' },
-                  { label: 'Phone', value: '+91 98765 43210' },
-                  { label: 'HQ',    value: 'Mumbai · London' },
+                  { label: 'Phone', value: '+91 83684 40255' },
+                  { label: 'HQ',    value: 'New Delhi · India' },
                   { label: 'Hours', value: '24/7 producer cover' },
                 ].map(({ label, value }) => (
                   <div key={label} style={{ borderLeft: '2px solid rgba(255,255,255,0.2)', paddingLeft: 16 }}>

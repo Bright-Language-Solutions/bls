@@ -1,5 +1,6 @@
 const locations = [
   // North India
+  { city: 'New Delhi',    state: 'Delhi',             slug: 'new-delhi',    region: 'North', headquarters: true, servicesAvailable: ['translation', 'interpretation', 'voice-over', 'dubbing', 'subtitling-captioning', 'localization', 'transcription', 'desktop-publishing', 'editing-proofreading', 'typesetting'] },
   { city: 'Delhi',        state: 'Delhi',             slug: 'delhi',        region: 'North', servicesAvailable: ['translation', 'interpretation', 'subtitling-captioning', 'transcription', 'localization', 'editing-proofreading'] },
   { city: 'Noida',        state: 'Uttar Pradesh',     slug: 'noida',        region: 'North', servicesAvailable: ['translation', 'localization', 'desktop-publishing', 'editing-proofreading'] },
   { city: 'Gurugram',     state: 'Haryana',           slug: 'gurugram',     region: 'North', servicesAvailable: ['translation', 'interpretation', 'localization', 'transcription'] },

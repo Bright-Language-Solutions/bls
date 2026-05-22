@@ -12,9 +12,9 @@ import {
 const NAV = [
   { href: '/admin/quotes',      label: 'Quotes',      icon: Users },
   { href: '/admin/analytics',   label: 'Analytics',   icon: BarChart2 },
-  { href: '/admin/quotations',  label: 'Quotations',  icon: FileText },
-  { href: '/admin/invoices',    label: 'Invoices',    icon: Receipt },
-  { href: '/admin/payments',    label: 'Payments',    icon: CreditCard },
+  { href: '/admin/quotations',  label: 'Quotations',  icon: FileText,   disabled: true },
+  { href: '/admin/invoices',    label: 'Invoices',    icon: Receipt,    disabled: true },
+  { href: '/admin/payments',    label: 'Payments',    icon: CreditCard, disabled: true },
   { href: '/admin/portfolio',   label: 'Portfolio',   icon: Images },
 ]
 
@@ -81,8 +81,28 @@ function Sidebar({ open, onClose, onLogout, pathname }) {
 
         {/* Navigation */}
         <nav className="flex-1 space-y-1 overflow-y-auto p-4">
-          {NAV.map(({ href, label, icon: Icon }) => {
+          {NAV.map(({ href, label, icon: Icon, disabled }) => {
             const active = pathname === href
+            if (disabled) {
+              return (
+                <div
+                  key={href}
+                  title="Coming soon"
+                  style={{ opacity: 0.4, cursor: 'not-allowed' }}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium"
+                >
+                  <Icon className="h-4 w-4 shrink-0" style={{ color: '#9BA8BB' }} />
+                  <span className="flex-1" style={{ color: '#9BA8BB' }}>{label}</span>
+                  <span style={{
+                    fontSize: '10px',
+                    background: '#E2E6EE',
+                    color: '#9BA8BB',
+                    borderRadius: '4px',
+                    padding: '1px 5px',
+                  }}>Soon</span>
+                </div>
+              )
+            }
             return (
               <Link
                 key={href}

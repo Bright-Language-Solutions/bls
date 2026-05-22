@@ -418,7 +418,7 @@ export default function Navbar() {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
             <a
-              href="tel:+919876543210"
+              href="tel:+918368440255"
               style={{
                 color: 'rgba(255,255,255,0.85)',
                 textDecoration: 'none',
@@ -428,7 +428,7 @@ export default function Navbar() {
               }}
             >
               <Phone size={12} />
-              +91 98765 43210
+              +91 83684 40255
             </a>
             <a
               href="mailto:hello@brightlanguage.in"
