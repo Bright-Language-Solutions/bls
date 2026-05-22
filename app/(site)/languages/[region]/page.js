@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const meta = REGION_MAP[params.region]
   if (!meta) return {}
-  const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguage.in'
+  const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguagesolutions.com'
   const desc = `ISO-certified translation and localisation for ${meta.name} by Bright Language Solutions — native-speaker experts for every language pair.`
   return {
     title: meta.name,

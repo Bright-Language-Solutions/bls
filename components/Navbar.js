@@ -519,38 +519,19 @@ export default function Navbar() {
           }}
         >
           {/* Logo */}
-          <Link
-            href="/"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              textDecoration: 'none',
-              flexShrink: 0,
-            }}
-          >
-            <img src="/assets/mark.svg"      alt="" className="logo-light" style={{ height: 36 }} />
-            <img src="/assets/mark-dark.svg" alt="" className="logo-dark"  style={{ height: 36 }} />
-
-            {/* Mobile: text label */}
-            <span
-              className="md:hidden"
-              style={{
-                fontSize: 15,
-                fontWeight: 600,
-                color: 'var(--ink)',
-                lineHeight: 1.25,
-                letterSpacing: '-0.01em',
-              }}
-            >
-              Bright<br />Language
-            </span>
-
-            {/* Desktop: wordmark SVG */}
-            <span className="hidden md:flex items-center" style={{ gap: 0 }}>
-              <img src="/assets/wordmark.svg"      alt="Bright Language Solutions" className="logo-light" style={{ height: 21 }} />
-              <img src="/assets/wordmark-dark.svg" alt="Bright Language Solutions" className="logo-dark"  style={{ height: 21 }} />
-            </span>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+            <img
+              src="/assets/logo-light.jpg"
+              alt="Bright Language Solutions"
+              className="dark:hidden"
+              style={{ height: 44, width: 'auto', objectFit: 'contain', maxWidth: 220 }}
+            />
+            <img
+              src="/assets/logo-dark.png"
+              alt="Bright Language Solutions"
+              className="hidden dark:block"
+              style={{ height: 44, width: 'auto', objectFit: 'contain', maxWidth: 220 }}
+            />
           </Link>
 
           {/* Desktop nav */}

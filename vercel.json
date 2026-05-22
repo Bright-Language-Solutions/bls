@@ -2,6 +2,10 @@
   "buildCommand": "yarn build",
   "outputDirectory": ".next",
   "framework": "nextjs",
+  "alias": [
+    "www.brightlanguagesolutions.com",
+    "brightlanguagesolutions.com"
+  ],
   "env": [
     "MONGO_URL",
     "DB_NAME",

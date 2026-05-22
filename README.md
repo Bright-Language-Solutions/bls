@@ -108,6 +108,14 @@ Sign out. Clears the `admin_session` cookie.
 
 ---
 
+## Live URLs
+
+| | |
+|---|---|
+| **Live URL** | https://www.brightlanguagesolutions.com |
+| **Admin URL** | https://www.brightlanguagesolutions.com/admin/login |
+| **WhatsApp** | https://wa.me/918368440255 |
+
 ## Deployment
 
 ### Vercel
@@ -129,7 +137,7 @@ Sign out. Clears the `admin_session` cookie.
 |---|---|---|
 | `MONGO_URL` | Yes | MongoDB connection string (`mongodb+srv://...`) |
 | `DB_NAME` | No | Database name — defaults to `bls` |
-| `NEXT_PUBLIC_BASE_URL` | Yes | Public site URL, e.g. `https://www.brightlanguage.in` |
+| `NEXT_PUBLIC_BASE_URL` | Yes | Public site URL, e.g. `https://www.brightlanguagesolutions.com` |
 | `ADMIN_SECRET` | Yes | Admin console password — change before deploying |
 | `WHATSAPP_PROVIDER` | No | `twilio`, `interakt`, or `wati` — omit to disable notifications |
 | `TWILIO_ACCOUNT_SID` | If `WHATSAPP_PROVIDER=twilio` | Twilio account SID |

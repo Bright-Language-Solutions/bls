@@ -2,7 +2,7 @@ import './globals.css'
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper'
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguage.in'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguagesolutions.com'),
   title: {
     default: 'Bright Language Solutions | ISO-Certified Translation & Localisation',
     template: '%s | Bright Language Solutions',
@@ -22,7 +22,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://www.brightlanguage.in',
+    url: 'https://www.brightlanguagesolutions.com',
     siteName: 'Bright Language Solutions',
     title: 'Bright Language Solutions | ISO-Certified Translation & Localisation',
     description:

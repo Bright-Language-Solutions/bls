@@ -89,8 +89,11 @@ export default function Footer() {
           {/* Brand column — always visible */}
           <div>
             <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: 16 }}>
-              <img src="/assets/mark-dark.svg" alt="BLS mark" style={{ height: 36 }} />
-              <img src="/assets/wordmark-dark.svg" alt="Bright Language Solutions" style={{ height: 26 }} />
+              <img
+                src="/assets/logo-dark.png"
+                alt="Bright Language Solutions"
+                style={{ height: 52, width: 'auto', objectFit: 'contain', maxWidth: 240 }}
+              />
             </Link>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: 20, maxWidth: 220 }}>
               ISO 17100 &amp; 9001 certified language services in 120+ languages. Engineered by linguists, reviewed by humans.

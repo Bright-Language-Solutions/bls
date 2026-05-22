@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const industry = industries.find((i) => i.slug === params.slug)
   if (!industry) return {}
-  const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguage.in'
+  const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguagesolutions.com'
   const desc = industry.description.slice(0, 160)
   return {
     title: industry.title,

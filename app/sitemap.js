@@ -2,7 +2,7 @@ import services from '@/data/services'
 import industries from '@/data/industries'
 import locations from '@/data/locations'
 
-const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguage.in'
+const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguagesolutions.com'
 
 const LANGUAGE_REGIONS = [
   'indian-languages',

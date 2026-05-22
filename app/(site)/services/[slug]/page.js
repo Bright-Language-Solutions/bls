@@ -9,7 +9,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const service = services.find((s) => s.slug === params.slug)
   if (!service) return {}
-  const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguage.in'
+  const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguagesolutions.com'
   return {
     title: service.title,
     description: service.tagline,

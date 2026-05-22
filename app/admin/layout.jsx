@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   Users, BarChart2, LogOut, Menu, X,
-  Sun, Moon, ShieldCheck, ChevronRight,
+  Sun, Moon, ChevronRight,
   FileText, Receipt, CreditCard, Images,
 } from 'lucide-react'
 
@@ -63,14 +63,12 @@ function Sidebar({ open, onClose, onLogout, pathname }) {
         ].join(' ')}
       >
         {/* Brand */}
-        <div className="flex h-16 shrink-0 items-center gap-3 border-b border-white/10 px-5">
-          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-orange">
-            <ShieldCheck className="h-4 w-4 text-white" />
-          </span>
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-bold text-white">Bright Language</p>
-            <p className="text-[10px] text-white/50">Admin Console</p>
-          </div>
+        <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/10 px-5">
+          <img
+            src="/assets/logo-dark.png"
+            alt="Bright Language Solutions"
+            style={{ height: 36, width: 'auto', objectFit: 'contain', maxWidth: 180 }}
+          />
           <button
             onClick={onClose}
             className="shrink-0 rounded-md p-1 text-white/50 hover:text-white lg:hidden"
@@ -155,12 +153,11 @@ export default function AdminLayout({ children }) {
       <div className="flex min-h-screen flex-col bg-slate-50 dark:bg-slate-950">
         <header className="flex h-14 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center gap-2">
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-brand-orange">
-              <ShieldCheck className="h-3.5 w-3.5 text-white" />
-            </span>
-            <span className="text-sm font-bold text-brand-navy dark:text-white">
-              Bright Language Admin
-            </span>
+            <img
+              src="/assets/logo-dark.png"
+              alt="Bright Language Solutions"
+              style={{ height: 36, width: 'auto', objectFit: 'contain', maxWidth: 180 }}
+            />
           </div>
           <ThemeToggle />
         </header>
@@ -190,10 +187,11 @@ export default function AdminLayout({ children }) {
           </button>
 
           <div className="flex items-center gap-2 lg:hidden">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-brand-orange">
-              <ShieldCheck className="h-3 w-3 text-white" />
-            </span>
-            <span className="text-sm font-bold text-brand-navy dark:text-white">Admin</span>
+            <img
+              src="/assets/logo-dark.png"
+              alt="Bright Language Solutions"
+              style={{ height: 28, width: 'auto', objectFit: 'contain', maxWidth: 140 }}
+            />
           </div>
 
           <div className="flex-1" />

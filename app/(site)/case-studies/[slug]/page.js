@@ -19,7 +19,7 @@ async function getStudy(slug) {
 export async function generateMetadata({ params }) {
   const study = await getStudy(params.slug)
   if (!study) return {}
-  const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguage.in'
+  const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguagesolutions.com'
   const desc = (study.summary || study.title).slice(0, 160)
   return {
     title: study.title,
