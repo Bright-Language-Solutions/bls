@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function GetQuotePage() {
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 24px' }}>
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 24px', background: 'var(--bg)' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
         {/* Left — context */}
         <div>

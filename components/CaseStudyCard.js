@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function CaseStudyCard({ tag, title, client, metric, slug }) {
   return (
-    <div className="bls-card p-6 flex flex-col justify-between" style={{ minHeight: 220 }}>
+    <div className="bls-card p-6 flex flex-col justify-between" style={{ minHeight: 220, borderRadius: 20 }}>
       {/* Tag */}
       <div>
         <span

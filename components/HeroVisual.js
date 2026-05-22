@@ -17,15 +17,10 @@ const TRANSLATIONS = [
 
 export default function HeroVisual() {
   const [idx, setIdx] = useState(0)
-  const [visible, setVisible] = useState(true)
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setVisible(false)
-      setTimeout(() => {
-        setIdx((i) => (i + 1) % TRANSLATIONS.length)
-        setVisible(true)
-      }, 300)
+      setIdx((i) => (i + 1) % TRANSLATIONS.length)
     }, 2400)
     return () => clearInterval(timer)
   }, [])
@@ -35,13 +30,14 @@ export default function HeroVisual() {
   return (
     <div
       style={{
-        background: '#fff',
-        border: '1px solid var(--rule)',
+        background: '#ffffff',
+        color: '#06184F',
+        border: '1px solid #E2E6EE',
         borderRadius: 20,
         padding: '28px 28px 24px',
         width: '100%',
         maxWidth: 360,
-        boxShadow: '0 24px 48px -12px rgba(6,24,79,.10)',
+        boxShadow: '0 24px 64px -12px rgba(6,24,79,0.15), 0 0 0 1px rgba(6,24,79,0.06)',
         position: 'relative',
       }}
     >
@@ -62,7 +58,7 @@ export default function HeroVisual() {
           style={{
             fontFamily: 'JetBrains Mono, monospace',
             fontSize: 12,
-            color: 'var(--muted-c)',
+            color: '#5A6577',
           }}
         >
           01/10
@@ -70,18 +66,18 @@ export default function HeroVisual() {
       </div>
 
       {/* Source */}
-      <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--muted-c)', marginBottom: 4 }}>
+      <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#5A6577', marginBottom: 4 }}>
         SOURCE · English
       </p>
-      <p style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 24, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 20 }}>
+      <p style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 24, fontWeight: 600, color: '#06184F', letterSpacing: '-0.02em', marginBottom: 20 }}>
         Hello, world.
       </p>
 
       {/* Divider */}
-      <div style={{ borderTop: '1px solid var(--rule)', marginBottom: 20 }} />
+      <div style={{ borderTop: '1px solid #E2E6EE', marginBottom: 20 }} />
 
       {/* Target */}
-      <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--muted-c)', marginBottom: 4 }}>
+      <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#5A6577', marginBottom: 4 }}>
         TARGET · {current.lang}
       </p>
       <p
@@ -89,35 +85,33 @@ export default function HeroVisual() {
           fontFamily: 'Bricolage Grotesque, system-ui',
           fontSize: 24,
           fontWeight: 600,
-          color: 'var(--ink)',
+          color: '#06184F',
           letterSpacing: '-0.02em',
           minHeight: 36,
           direction: current.rtl ? 'rtl' : 'ltr',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'none' : 'translateY(8px)',
-          transition: 'opacity 0.3s ease, transform 0.3s ease',
+          opacity: 1,
         }}
       >
         {current.text}
       </p>
 
       {/* Footer row */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--rule)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 20, paddingTop: 16, borderTop: '1px solid #E2E6EE' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span
             style={{ width: 8, height: 8, borderRadius: '50%', background: '#10B981', display: 'inline-block' }}
           />
-          <span style={{ fontSize: 12, color: 'var(--muted-c)' }}>Reviewed by a native linguist</span>
+          <span style={{ fontSize: 12, color: '#5A6577' }}>Reviewed by a native linguist</span>
         </div>
         <div
           style={{
             width: 32, height: 32, borderRadius: '50%',
-            background: 'var(--yellow)',
+            background: '#F5B819',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
           }}
         >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--navy)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#06184F">
             <polygon points="5 3 19 12 5 21 5 3" />
           </svg>
         </div>

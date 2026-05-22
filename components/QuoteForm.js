@@ -47,10 +47,11 @@ export default function QuoteForm() {
     return (
       <div
         style={{
-          background: '#fff',
-          borderRadius: 20,
+          background: '#ffffff',
+          borderRadius: 24,
           padding: 30,
           textAlign: 'center',
+          color: '#06184F',
         }}
       >
         <span
@@ -74,14 +75,14 @@ export default function QuoteForm() {
             fontFamily: 'Bricolage Grotesque, system-ui',
             fontSize: 24,
             fontWeight: 600,
-            color: 'var(--ink)',
+            color: '#06184F',
             letterSpacing: '-0.02em',
             marginBottom: 12,
           }}
         >
           Thanks. A producer is on it.
         </h3>
-        <p style={{ fontSize: 15, color: 'var(--muted-c)', lineHeight: 1.65 }}>
+        <p style={{ fontSize: 15, color: '#5A6577', lineHeight: 1.65 }}>
           You&rsquo;ll hear back within four working hours.
         </p>
       </div>
@@ -90,12 +91,12 @@ export default function QuoteForm() {
 
   const inputStyle = {
     width: '100%',
-    padding: '12px 14px',
+    padding: '14px 16px',
     borderRadius: 10,
-    border: '1px solid var(--rule)',
-    fontSize: 14,
-    color: 'var(--ink)',
-    background: '#fff',
+    border: '1.5px solid #E2E6EE',
+    fontSize: 15,
+    color: '#06184F',
+    background: '#ffffff',
     outline: 'none',
     fontFamily: 'Manrope, system-ui',
     boxSizing: 'border-box',
@@ -105,7 +106,8 @@ export default function QuoteForm() {
   return (
     <form
       onSubmit={submit}
-      style={{ background: '#fff', borderRadius: 20, padding: 30, display: 'flex', flexDirection: 'column', gap: 16 }}
+      className="bls-form"
+      style={{ background: '#ffffff', borderRadius: 24, padding: 30, display: 'flex', flexDirection: 'column', gap: 16 }}
     >
       <input
         type="text"
@@ -160,7 +162,7 @@ export default function QuoteForm() {
         <div
           style={{
             background: '#FEE2E2',
-            color: '#B91C1C',
+            color: '#991B1B',
             fontSize: 13,
             padding: '10px 14px',
             borderRadius: 8,
@@ -174,7 +176,7 @@ export default function QuoteForm() {
         type="submit"
         disabled={status === 'loading'}
         className="btn accent"
-        style={{ width: '100%', justifyContent: 'center', opacity: status === 'loading' ? 0.7 : 1 }}
+        style={{ width: '100%', justifyContent: 'center', opacity: status === 'loading' ? 0.7 : 1, background: '#F5B819', color: '#06184F' }}
       >
         {status === 'loading' ? 'Sending…' : 'Send Brief →'}
       </button>
@@ -183,7 +185,7 @@ export default function QuoteForm() {
         style={{
           fontSize: 11,
           fontFamily: 'JetBrains Mono, monospace',
-          color: 'var(--muted-c)',
+          color: '#9BA8BB',
           textAlign: 'center',
           margin: 0,
           textTransform: 'uppercase',

@@ -6,19 +6,24 @@ export default function ThemeToggle() {
   const [dark, setDark] = useState(false)
 
   useEffect(() => {
-    const stored = localStorage.getItem('bls-theme')
+    const saved = localStorage.getItem('bls-theme')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const isDark = stored === 'dark' || (!stored && prefersDark)
+    const isDark = saved === 'dark' || (!saved && prefersDark)
     setDark(isDark)
+    applyTheme(isDark)
   }, [])
 
-  const toggle = () => {
+  function applyTheme(isDark) {
+    const root = document.documentElement
+    root.classList.toggle('dark', isDark)
+    root.setAttribute('data-theme', isDark ? 'dark' : 'light')
+    localStorage.setItem('bls-theme', isDark ? 'dark' : 'light')
+  }
+
+  function toggle() {
     const next = !dark
     setDark(next)
-    const theme = next ? 'dark' : 'light'
-    document.documentElement.setAttribute('data-theme', theme)
-    document.documentElement.classList.toggle('dark', next)
-    localStorage.setItem('bls-theme', theme)
+    applyTheme(next)
   }
 
   return (
@@ -53,7 +58,6 @@ export default function ThemeToggle() {
         }}
       >
         {dark ? (
-          /* Sun icon */
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#06184F" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="4" />
             <line x1="12" y1="2" x2="12" y2="4" />
@@ -66,7 +70,6 @@ export default function ThemeToggle() {
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
           </svg>
         ) : (
-          /* Moon icon */
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>

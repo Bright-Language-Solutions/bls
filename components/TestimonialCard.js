@@ -7,7 +7,27 @@ export default function TestimonialCard({ quote, name, role, company }) {
     .toUpperCase()
 
   return (
-    <div className="bls-card p-6 flex flex-col gap-4" style={{ height: '100%' }}>
+    <div className="bls-card p-6 flex flex-col gap-4" style={{ height: '100%', position: 'relative', overflow: 'hidden' }}>
+      {/* Decorative quote mark */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: -8,
+          right: 16,
+          fontFamily: 'Bricolage Grotesque, system-ui',
+          fontSize: 96,
+          fontWeight: 700,
+          color: 'var(--ink)',
+          opacity: 0.04,
+          lineHeight: 1,
+          userSelect: 'none',
+          pointerEvents: 'none',
+        }}
+      >
+        &ldquo;
+      </span>
+
       {/* Stars */}
       <div style={{ display: 'flex', gap: 3 }}>
         {Array.from({ length: 5 }).map((_, i) => (
@@ -18,7 +38,7 @@ export default function TestimonialCard({ quote, name, role, company }) {
       </div>
 
       {/* Quote */}
-      <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.7, fontStyle: 'italic', flex: 1 }}>
+      <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.7, fontStyle: 'italic', flex: 1, position: 'relative' }}>
         &ldquo;{quote}&rdquo;
       </p>
 
