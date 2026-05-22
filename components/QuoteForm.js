@@ -173,7 +173,6 @@ export default function QuoteForm() {
         <input
           type="email"
           placeholder="priya@company.com"
-          required
           value={fields.email}
           onChange={set('email')}
           style={inputStyle('email')}

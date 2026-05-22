@@ -28,7 +28,7 @@ export default async function AdminQuotesPage() {
       sourceLang:   r.sourceLang || '',
       targetLang:   r.targetLang || '',
       wordCount:    r.wordCount ?? null,
-      projectDate:  r.projectDate || toISO(r.projectDate),
+      projectDate:  r.projectDate || '',
       status:       r.status || 'RECEIVED',
       whatsappSent: !!r.whatsappSent,
       notes:        r.notes || '',

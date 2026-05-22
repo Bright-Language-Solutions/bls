@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState, useTransition } from 'react'
-import { Search, Check, X, RefreshCw, Download, Phone, Globe, Calendar } from 'lucide-react'
+import { Search, Check, X, RefreshCw, Download, Phone, Globe, Calendar, Loader2 } from 'lucide-react'
 
 const STATUS_VALUES = ['RECEIVED', 'IN_REVIEW', 'QUOTED', 'IN_PROGRESS', 'DELIVERED', 'CANCELLED']
 
@@ -40,6 +40,143 @@ function shortId(id) {
   return id ? String(id).slice(0, 8) : '—'
 }
 
+function langDisplay(sourceLang, targetLang) {
+  const src = (sourceLang || '').trim()
+  const tgt = (targetLang || '').trim()
+  if (!src && !tgt) return 'Not specified'
+  if (!src) return `→ ${tgt}`
+  if (!tgt) return src
+  return `${src} → ${tgt}`
+}
+
+/* ── Small label+value pair used in detail panel ── */
+function Field({ label, children }) {
+  return (
+    <div>
+      <p className="text-xs font-medium text-slate-400 dark:text-slate-500">{label}</p>
+      <p className="mt-0.5 text-sm font-medium text-slate-700 dark:text-slate-200">{children}</p>
+    </div>
+  )
+}
+
+/* ── Expanded detail panel shown below the table ── */
+function DetailPanel({ quote, onClose, onSaved }) {
+  const [editStatus, setEditStatus] = useState(quote.status)
+  const [editNotes,  setEditNotes]  = useState(quote.notes || '')
+  const [saving, setSaving]         = useState(false)
+  const [saveError, setSaveError]   = useState(null)
+  const [savedOk, setSavedOk]       = useState(false)
+
+  const handleSave = async () => {
+    setSaving(true)
+    setSaveError(null)
+    try {
+      const res  = await fetch(`/api/quotes/${encodeURIComponent(quote.id)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: editStatus, notes: editNotes || null }),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok || !json?.success) throw new Error(json?.error || `HTTP ${res.status}`)
+      onSaved(json.lead || { ...quote, status: editStatus, notes: editNotes })
+      setSavedOk(true)
+      setTimeout(() => setSavedOk(false), 2500)
+    } catch (err) {
+      setSaveError(err.message)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <div className="mt-4 overflow-hidden rounded-2xl border border-brand-orange/40 bg-white shadow-lg dark:border-brand-orange/20 dark:bg-slate-800">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-5 py-4 dark:border-slate-700 dark:bg-slate-900/50">
+        <div>
+          <h2 className="font-semibold text-brand-navy dark:text-white">{quote.customerName}</h2>
+          <p className="mt-0.5 font-mono text-xs text-slate-400">#{shortId(quote.id)}</p>
+        </div>
+        <button
+          onClick={onClose}
+          className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-200 hover:text-slate-700 dark:hover:bg-slate-700 dark:hover:text-white"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+
+      {/* Quote fields read-only */}
+      <div className="grid grid-cols-2 gap-x-6 gap-y-4 p-5 sm:grid-cols-3 lg:grid-cols-4">
+        <Field label="Phone">
+          <a href={`tel:+91${quote.phone}`} className="text-brand-orange hover:underline">{quote.phone}</a>
+        </Field>
+        <Field label="Email">{quote.email || '—'}</Field>
+        <Field label="Service">{quote.serviceType}</Field>
+        <Field label="Languages">{langDisplay(quote.sourceLang, quote.targetLang)}</Field>
+        <Field label="Word Count">{quote.wordCount != null ? quote.wordCount.toLocaleString() : '—'}</Field>
+        <Field label="Project Date">{quote.projectDate ? formatDate(quote.projectDate) : 'Not specified'}</Field>
+        <Field label="WhatsApp">{quote.whatsappSent ? '✓ Sent' : '✗ Not sent'}</Field>
+        <Field label="Submitted">{formatDateTime(quote.createdAt)}</Field>
+      </div>
+
+      {/* Editable section */}
+      <div className="space-y-4 border-t border-slate-200 px-5 py-5 dark:border-slate-700">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              Status
+            </label>
+            <select
+              value={editStatus}
+              onChange={(e) => setEditStatus(e.target.value)}
+              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-brand-navy focus:border-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange/30 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+            >
+              {STATUS_VALUES.map((s) => <option key={s} value={s}>{s.replace('_', ' ')}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Internal Notes
+          </label>
+          <textarea
+            value={editNotes}
+            onChange={(e) => setEditNotes(e.target.value)}
+            rows={3}
+            maxLength={1000}
+            placeholder="Add internal notes visible only to admins…"
+            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-brand-navy placeholder-slate-400 focus:border-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange/30 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder-slate-500"
+          />
+        </div>
+
+        {saveError && (
+          <p className="text-sm text-rose-600 dark:text-rose-400">{saveError}</p>
+        )}
+
+        <div className="flex items-center justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700"
+          >
+            Close
+          </button>
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="inline-flex items-center gap-2 rounded-lg bg-brand-orange px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-orange/90 disabled:opacity-60"
+          >
+            {saving
+              ? <><Loader2 className="h-3.5 w-3.5 animate-spin" /> Saving…</>
+              : savedOk
+              ? <><Check className="h-3.5 w-3.5" /> Saved</>
+              : 'Save changes'}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ── Status select shared by card and table row ── */
 function StatusSelect({ quote, rowSaving, updateStatus }) {
   return (
@@ -47,6 +184,7 @@ function StatusSelect({ quote, rowSaving, updateStatus }) {
       value={quote.status}
       disabled={!!rowSaving[quote.id]}
       onChange={(e) => updateStatus(quote, e.target.value)}
+      onClick={(e) => e.stopPropagation()}
       className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-xs font-medium text-brand-navy focus:border-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange/30 disabled:opacity-60 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
     >
       {STATUS_VALUES.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -55,11 +193,12 @@ function StatusSelect({ quote, rowSaving, updateStatus }) {
 }
 
 export default function QuotesClient({ initialQuotes = [], loadError = null }) {
-  const [quotes, setQuotes]   = useState(initialQuotes)
-  const [query, setQuery]     = useState('')
-  const [statusFilter, setStatusFilter] = useState('ALL')
-  const [rowSaving, setRowSaving]       = useState({})
-  const [isPending, startTransition]    = useTransition()
+  const [quotes, setQuotes]               = useState(initialQuotes)
+  const [query, setQuery]                 = useState('')
+  const [statusFilter, setStatusFilter]   = useState('ALL')
+  const [rowSaving, setRowSaving]         = useState({})
+  const [selectedQuote, setSelectedQuote] = useState(null)
+  const [isPending, startTransition]      = useTransition()
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -96,13 +235,23 @@ export default function QuotesClient({ initialQuotes = [], loadError = null }) {
     }
   }
 
+  const selectQuote = (quote) => {
+    setSelectedQuote((prev) => (prev?.id === quote.id ? null : quote))
+  }
+
+  const handleDetailSaved = (updated) => {
+    setQuotes((all) => all.map((qt) => (qt.id === updated.id ? { ...qt, ...updated } : qt)))
+    setSelectedQuote((prev) => (prev ? { ...prev, ...updated } : prev))
+  }
+
   const refresh = () => { startTransition(() => { window.location.reload() }) }
 
   const exportCsv = () => {
-    const cols = ['Quote ID','Customer','Phone','Service','Source Lang','Target Lang','Project Date','Status','WA Sent','Created']
+    const cols = ['Quote ID','Customer','Phone','Email','Service','Source Lang','Target Lang','Word Count','Project Date','Status','WA Sent','Created']
     const rows = filtered.map((qt) => [
-      qt.id, qt.customerName, qt.phone, qt.serviceType,
-      qt.sourceLang, qt.targetLang, qt.projectDate || '',
+      qt.id, qt.customerName, qt.phone, qt.email || '',
+      qt.serviceType, qt.sourceLang, qt.targetLang,
+      qt.wordCount ?? '', qt.projectDate || '',
       qt.status, qt.whatsappSent ? 'Yes' : 'No', formatDateTime(qt.createdAt),
     ])
     const csv = [cols, ...rows]
@@ -202,13 +351,20 @@ export default function QuotesClient({ initialQuotes = [], loadError = null }) {
           ) : filtered.map((quote) => (
             <div
               key={quote.id}
-              className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+              onClick={() => selectQuote(quote)}
+              className={[
+                'cursor-pointer rounded-2xl border bg-white p-4 shadow-sm transition dark:bg-slate-800',
+                selectedQuote?.id === quote.id
+                  ? 'border-brand-orange dark:border-brand-orange/60'
+                  : 'border-slate-200 dark:border-slate-700',
+              ].join(' ')}
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
                   <p className="truncate font-semibold text-brand-navy dark:text-white">{quote.customerName}</p>
                   <a
                     href={`tel:+91${quote.phone}`}
+                    onClick={(e) => e.stopPropagation()}
                     className="flex items-center gap-1 text-sm text-slate-500 hover:text-brand-orange dark:text-slate-400"
                   >
                     <Phone className="h-3 w-3" />
@@ -233,12 +389,14 @@ export default function QuotesClient({ initialQuotes = [], loadError = null }) {
                 <div>
                   <p className="flex items-center gap-1 text-slate-400 dark:text-slate-500"><Globe className="h-3 w-3" /> Languages</p>
                   <p className="mt-0.5 font-medium text-slate-700 dark:text-slate-200">
-                    {quote.sourceLang} <span className="text-brand-orange">→</span> {quote.targetLang}
+                    {langDisplay(quote.sourceLang, quote.targetLang)}
                   </p>
                 </div>
                 <div>
                   <p className="flex items-center gap-1 text-slate-400 dark:text-slate-500"><Calendar className="h-3 w-3" /> Project Date</p>
-                  <p className="mt-0.5 font-medium text-slate-700 dark:text-slate-200">{formatDate(quote.projectDate)}</p>
+                  <p className="mt-0.5 font-medium text-slate-700 dark:text-slate-200">
+                    {quote.projectDate ? formatDate(quote.projectDate) : 'Not specified'}
+                  </p>
                 </div>
                 <div>
                   <p className="text-slate-400 dark:text-slate-500">WA Sent</p>
@@ -286,11 +444,14 @@ export default function QuotesClient({ initialQuotes = [], loadError = null }) {
                 ) : filtered.map((quote, i) => (
                   <tr
                     key={quote.id}
+                    onClick={() => selectQuote(quote)}
                     className={[
-                      'border-b border-slate-100 align-top transition-colors dark:border-slate-700/60',
-                      i % 2 === 0
-                        ? 'bg-white dark:bg-slate-800'
-                        : 'bg-slate-50/60 dark:bg-slate-800/40',
+                      'cursor-pointer border-b border-slate-100 align-top transition-colors dark:border-slate-700/60',
+                      selectedQuote?.id === quote.id
+                        ? 'bg-brand-orange/5 dark:bg-brand-orange/10'
+                        : i % 2 === 0
+                        ? 'bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700/40'
+                        : 'bg-slate-50/60 hover:bg-slate-100/80 dark:bg-slate-800/40 dark:hover:bg-slate-700/40',
                     ].join(' ')}
                   >
                     <td className="whitespace-nowrap px-4 py-3 font-mono text-xs text-slate-500 dark:text-slate-400">
@@ -298,13 +459,19 @@ export default function QuotesClient({ initialQuotes = [], loadError = null }) {
                     </td>
                     <td className="px-4 py-3 font-semibold text-brand-navy dark:text-white">{quote.customerName}</td>
                     <td className="px-4 py-3 text-slate-700 dark:text-slate-300">
-                      <a href={`tel:+91${quote.phone}`} className="hover:text-brand-orange">{quote.phone}</a>
+                      <a
+                        href={`tel:+91${quote.phone}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="hover:text-brand-orange"
+                      >
+                        {quote.phone}
+                      </a>
                     </td>
                     <td className="whitespace-nowrap px-4 py-3 text-slate-700 dark:text-slate-300">
                       {quote.serviceType}
                     </td>
                     <td className="whitespace-nowrap px-4 py-3 text-slate-700 dark:text-slate-300">
-                      {quote.sourceLang} <span className="text-brand-orange">→</span> {quote.targetLang}
+                      {langDisplay(quote.sourceLang, quote.targetLang)}
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex flex-wrap items-center gap-1.5">
@@ -317,10 +484,10 @@ export default function QuotesClient({ initialQuotes = [], loadError = null }) {
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-4 py-3 text-slate-700 dark:text-slate-300">
-                      {formatDate(quote.projectDate)}
+                      {quote.projectDate ? formatDate(quote.projectDate) : '—'}
                     </td>
                     <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                         <StatusSelect quote={quote} rowSaving={rowSaving} updateStatus={updateStatus} />
                         {quote.whatsappSent ? (
                           <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400" title="WhatsApp sent">
@@ -340,8 +507,18 @@ export default function QuotesClient({ initialQuotes = [], loadError = null }) {
           </div>
         </div>
 
+        {/* ── Detail panel (shown when a row is selected) ── */}
+        {selectedQuote && (
+          <DetailPanel
+            key={selectedQuote.id}
+            quote={selectedQuote}
+            onClose={() => setSelectedQuote(null)}
+            onSaved={handleDetailSaved}
+          />
+        )}
+
         <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">
-          Showing {filtered.length} of {quotes.length} quotes.
+          Showing {filtered.length} of {quotes.length} quotes.{selectedQuote ? ' Click a row to toggle detail panel.' : ' Click any row to expand details.'}
         </p>
       </div>
     </div>

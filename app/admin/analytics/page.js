@@ -3,14 +3,32 @@ export const revalidate = 0
 
 import { getQuotesCollection } from '@/lib/mongo'
 
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+
+function buildLastSixMonths() {
+  const months = []
+  const now = new Date()
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1)
+    months.push({ year: d.getFullYear(), month: d.getMonth() + 1, label: `${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}` })
+  }
+  return months
+}
+
 export default async function AnalyticsPage() {
   let stats = { total: 0, received: 0, inProgress: 0, delivered: 0 }
   let serviceRows = []
+  let monthlyRows = []
   let error = null
 
   try {
     const col = await getQuotesCollection()
-    const [total, received, inProgress, delivered, serviceAgg] = await Promise.all([
+    const sixMonthsAgo = new Date()
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6)
+    sixMonthsAgo.setDate(1)
+    sixMonthsAgo.setHours(0, 0, 0, 0)
+
+    const [total, received, inProgress, delivered, serviceAgg, monthlyAgg] = await Promise.all([
       col.countDocuments({}),
       col.countDocuments({ status: 'RECEIVED' }),
       col.countDocuments({ status: { $in: ['IN_REVIEW', 'IN_PROGRESS', 'QUOTED'] } }),
@@ -19,9 +37,24 @@ export default async function AnalyticsPage() {
         { $group: { _id: '$serviceType', count: { $sum: 1 } } },
         { $sort: { count: -1 } },
       ]).toArray(),
+      col.aggregate([
+        { $match: { createdAt: { $gte: sixMonthsAgo } } },
+        { $group: { _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } }, count: { $sum: 1 } } },
+        { $sort: { '_id.year': 1, '_id.month': 1 } },
+      ]).toArray(),
     ])
+
     stats = { total, received, inProgress, delivered }
     serviceRows = serviceAgg.map((r) => ({ service: r._id || 'Unknown', count: r.count }))
+
+    const monthlyMap = {}
+    for (const r of monthlyAgg) {
+      monthlyMap[`${r._id.year}-${r._id.month}`] = r.count
+    }
+    monthlyRows = buildLastSixMonths().map(({ year, month, label }) => ({
+      label,
+      count: monthlyMap[`${year}-${month}`] || 0,
+    }))
   } catch (err) {
     console.error('[admin/analytics] fetch failed', err?.message || err)
     error = 'Could not load analytics from the database.'
@@ -59,6 +92,30 @@ export default async function AnalyticsPage() {
         ))}
       </div>
 
+      {/* Monthly quote volume */}
+      <div className="rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
+        <div className="border-b border-slate-200 px-5 py-4 dark:border-slate-700">
+          <h2 className="text-sm font-semibold text-brand-navy dark:text-white">Monthly Quote Volume — Last 6 Months</h2>
+        </div>
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-slate-200 dark:border-slate-700">
+              <th className="px-5 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">Month</th>
+              <th className="px-5 py-3 text-right text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">Quotes</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
+            {monthlyRows.map(({ label, count }) => (
+              <tr key={label} className="hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                <td className="px-5 py-3 font-medium text-brand-navy dark:text-white">{label}</td>
+                <td className="px-5 py-3 text-right text-slate-700 dark:text-slate-300">{count}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Service breakdown */}
       <div className="rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="border-b border-slate-200 px-5 py-4 dark:border-slate-700">
           <h2 className="text-sm font-semibold text-brand-navy dark:text-white">Quotes by Service Type</h2>

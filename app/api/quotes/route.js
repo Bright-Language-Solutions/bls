@@ -56,7 +56,7 @@ export async function POST(request) {
       sourceLang:   data.sourceLang || '',
       targetLang:   data.targetLang || '',
       wordCount:    data.wordCount ?? null,
-      projectDate:  data.projectDate,
+      projectDate:  data.projectDate || '',
       notes:        data.notes || null,
       status:       QuoteStatus.RECEIVED,
       whatsappSent: false,
