@@ -8,6 +8,7 @@ export default function QuoteForm() {
   const [fields, setFields] = useState({
     name: '',
     email: '',
+    phone: '',
     service: services[0]?.title || '',
     languages: '',
     notes: '',
@@ -28,6 +29,7 @@ export default function QuoteForm() {
         body: JSON.stringify({
           customerName: fields.name,
           email: fields.email,
+          phone: fields.phone,
           serviceType: mapServiceType(fields.service),
           notes: [fields.languages && `Languages: ${fields.languages}`, fields.notes].filter(Boolean).join('\n'),
         }),
@@ -126,6 +128,15 @@ export default function QuoteForm() {
         onChange={set('email')}
         style={inputStyle}
         aria-label="Work email"
+      />
+      <input
+        type="tel"
+        placeholder="Your phone number (e.g. 98765 43210)"
+        value={fields.phone}
+        onChange={set('phone')}
+        required
+        style={inputStyle}
+        aria-label="Phone number"
       />
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
