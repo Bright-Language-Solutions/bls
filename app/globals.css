@@ -211,6 +211,9 @@
   opacity: 1;
 }
 
+.bls-form-dark input::placeholder,
+.bls-form-dark textarea::placeholder { color: #3D4F6E; opacity: 1; }
+
 /* ─── Logo: respond to JS theme toggle ─────────────────────── */
 .logo-light { display: block; }
 .logo-dark  { display: none; }

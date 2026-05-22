@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { User, Mail, Phone, Layers, Globe, FileText } from 'lucide-react'
 import services from '@/data/services'
 import { mapServiceType } from '@/lib/quoteSchema'
 
-const chevronSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239BA8BB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`
+const chevronSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2395A0BD' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`
 
 export default function QuoteForm() {
   const [fields, setFields] = useState({
@@ -53,86 +54,78 @@ export default function QuoteForm() {
     return (
       <div
         style={{
-          background: '#F0FDF4',
-          border: '1px solid #BBF7D0',
+          background: '#0D2A1A',
+          border: '1px solid #166534',
           borderRadius: 16,
-          padding: 32,
+          padding: '40px 32px',
           textAlign: 'center',
         }}
       >
-        <div style={{ fontSize: 48, lineHeight: 1, marginBottom: 16 }}>✅</div>
-        <h3
-          style={{
-            fontSize: 22,
-            fontWeight: 700,
-            color: '#06184F',
-            margin: '0 0 8px',
-          }}
-        >
+        <div style={{ fontSize: 52, lineHeight: 1, marginBottom: 16 }}>✅</div>
+        <h3 style={{ fontSize: 24, fontWeight: 700, color: '#4ADE80', margin: '0 0 8px' }}>
           Brief received!
         </h3>
-        <p style={{ fontSize: 14, color: '#5A6577', margin: 0 }}>
+        <p style={{ fontSize: 15, color: '#95A0BD', margin: 0 }}>
           A producer will be in touch within 4 hours.
         </p>
       </div>
     )
   }
 
-  const getInputStyle = (name) => ({
+  const inputStyle = (name) => ({
     width: '100%',
     padding: '14px 16px',
     borderRadius: 10,
-    border: `1.5px solid ${focused === name ? '#1466DB' : '#E2E6EE'}`,
+    border: `1.5px solid ${focused === name ? '#1466DB' : '#1F2D55'}`,
     fontSize: 15,
-    color: '#06184F',
-    background: focused === name ? '#ffffff' : '#F8F9FF',
+    color: '#F4F7FE',
+    background: '#0B1A3D',
     outline: 'none',
     fontFamily: 'Manrope, system-ui',
     boxSizing: 'border-box',
-    transition: 'border-color 0.15s, background 0.15s, box-shadow 0.15s',
-    boxShadow: focused === name ? '0 0 0 3px rgba(20,102,219,0.1)' : 'none',
+    transition: 'border-color 0.15s, box-shadow 0.15s',
+    boxShadow: focused === name ? '0 0 0 3px rgba(20,102,219,0.2)' : 'none',
   })
-
-  const labelStyle = {
-    display: 'block',
-    fontSize: 12,
-    fontWeight: 600,
-    color: '#06184F',
-    textTransform: 'uppercase',
-    letterSpacing: '0.08em',
-    marginBottom: 6,
-  }
 
   const fp = (name) => ({
     onFocus: () => setFocused(name),
     onBlur: () => setFocused(''),
   })
 
+  const labelStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 6,
+    fontSize: 11,
+    fontWeight: 600,
+    color: '#95A0BD',
+    textTransform: 'uppercase',
+    letterSpacing: '0.1em',
+    marginBottom: 6,
+  }
+
+  const fieldWrap = { display: 'flex', flexDirection: 'column', marginBottom: 16 }
+
   return (
     <form
       onSubmit={submit}
-      className="bls-quote-form"
+      className="bls-form-dark"
       style={{
-        background: '#ffffff',
+        background: '#0D1F4A',
+        border: '1px solid #1F2D55',
         borderRadius: 24,
         padding: '36px 32px',
-        boxShadow: '0 32px 80px -16px rgba(0,0,0,0.35)',
+        boxShadow: '0 32px 80px -16px rgba(0,0,0,0.5)',
         display: 'flex',
         flexDirection: 'column',
-        gap: 16,
       }}
     >
-      <style>{`
-        .bls-quote-form input::placeholder,
-        .bls-quote-form textarea::placeholder { color: #9BA8BB; }
-      `}</style>
-
       {/* Header */}
-      <div style={{ marginBottom: 8 }}>
-        <h2 style={{ fontSize: 22, fontWeight: 700, color: '#06184F', margin: '0 0 6px' }}>
+      <div style={{ marginBottom: 28 }}>
+        <h2 style={{ fontSize: 24, fontWeight: 700, color: '#ffffff', margin: '0 0 6px' }}>
           Get a Free Quote
         </h2>
-        <p style={{ fontSize: 14, color: '#5A6577', margin: 0 }}>
+        <p style={{ fontSize: 14, color: '#95A0BD', margin: 0 }}>
           We reply within 4 hours. No obligation.
         </p>
       </div>
@@ -141,13 +134,13 @@ export default function QuoteForm() {
       {status === 'error' && (
         <div
           style={{
-            background: '#FEF2F2',
-            border: '1px solid #FECACA',
+            background: 'rgba(220,38,38,0.1)',
+            border: '1px solid rgba(220,38,38,0.3)',
             borderRadius: 10,
-            color: '#DC2626',
+            color: '#FCA5A5',
             padding: '12px 16px',
             fontSize: 14,
-            marginBottom: 0,
+            marginBottom: 16,
           }}
         >
           {errorMsg}
@@ -155,55 +148,67 @@ export default function QuoteForm() {
       )}
 
       {/* Name */}
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <label style={labelStyle}>Your Name</label>
+      <div style={fieldWrap}>
+        <label style={labelStyle}>
+          <User size={16} color="#1466DB" />
+          Your Name
+        </label>
         <input
           type="text"
           placeholder="Priya Sharma"
           required
           value={fields.name}
           onChange={set('name')}
-          style={getInputStyle('name')}
+          style={inputStyle('name')}
           {...fp('name')}
         />
       </div>
 
       {/* Email */}
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <label style={labelStyle}>Work Email</label>
+      <div style={fieldWrap}>
+        <label style={labelStyle}>
+          <Mail size={16} color="#1466DB" />
+          Work Email
+        </label>
         <input
           type="email"
           placeholder="priya@company.com"
           required
           value={fields.email}
           onChange={set('email')}
-          style={getInputStyle('email')}
+          style={inputStyle('email')}
           {...fp('email')}
         />
       </div>
 
       {/* Phone */}
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <label style={labelStyle}>Phone Number</label>
+      <div style={fieldWrap}>
+        <label style={labelStyle}>
+          <Phone size={16} color="#1466DB" />
+          Phone Number
+        </label>
         <input
           type="tel"
           placeholder="e.g. 98765 43210"
           required
           value={fields.phone}
           onChange={set('phone')}
-          style={getInputStyle('phone')}
+          style={inputStyle('phone')}
           {...fp('phone')}
         />
       </div>
 
       {/* Service Type */}
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <label style={labelStyle}>Service Type</label>
+      <div style={fieldWrap}>
+        <label style={labelStyle}>
+          <Layers size={16} color="#1466DB" />
+          Service Type
+        </label>
         <select
           value={fields.service}
           onChange={set('service')}
           style={{
-            ...getInputStyle('service'),
+            ...inputStyle('service'),
             appearance: 'none',
             WebkitAppearance: 'none',
             backgroundImage: chevronSvg,
@@ -215,37 +220,62 @@ export default function QuoteForm() {
           {...fp('service')}
         >
           {services.map((s) => (
-            <option key={s.slug} value={s.title}>
+            <option key={s.slug} value={s.title} style={{ background: '#0D1F4A' }}>
               {s.title}
             </option>
           ))}
         </select>
       </div>
 
-      {/* Language Pair (optional) */}
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <label style={labelStyle}>Language Pair (optional)</label>
+      {/* Language Pair */}
+      <div style={fieldWrap}>
+        <label style={labelStyle}>
+          <Globe size={16} color="#1466DB" />
+          Language Pair
+        </label>
         <input
           type="text"
           placeholder="e.g. English → Hindi, Tamil"
           value={fields.languages}
           onChange={set('languages')}
-          style={getInputStyle('languages')}
+          style={inputStyle('languages')}
           {...fp('languages')}
         />
       </div>
 
       {/* Notes */}
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <label style={labelStyle}>Project Brief</label>
+      <div style={fieldWrap}>
+        <label style={labelStyle}>
+          <FileText size={16} color="#1466DB" />
+          Project Brief
+        </label>
         <textarea
           placeholder="What needs translating? Paste a brief or describe your project…"
           rows={3}
           value={fields.notes}
           onChange={set('notes')}
-          style={{ ...getInputStyle('notes'), resize: 'vertical' }}
+          style={{ ...inputStyle('notes'), resize: 'vertical' }}
           {...fp('notes')}
         />
+      </div>
+
+      {/* Trust badges */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 8 }}>
+        {['🔒 NDA', '⚡ 4hr reply', '✓ ISO certified'].map((badge) => (
+          <span
+            key={badge}
+            style={{
+              fontSize: 11,
+              color: '#95A0BD',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 999,
+              padding: '4px 10px',
+            }}
+          >
+            {badge}
+          </span>
+        ))}
       </div>
 
       {/* Submit */}
@@ -253,16 +283,18 @@ export default function QuoteForm() {
         type="submit"
         disabled={status === 'loading'}
         style={{
-          background: '#F5B819',
+          background: 'linear-gradient(135deg, #F5B819, #D89E0B)',
           color: '#06184F',
           fontSize: 17,
-          fontWeight: 700,
-          padding: '16px 24px',
+          fontWeight: 800,
+          padding: '17px 24px',
           borderRadius: 999,
           width: '100%',
           border: 'none',
           cursor: status === 'loading' ? 'not-allowed' : 'pointer',
           marginTop: 8,
+          letterSpacing: '-0.01em',
+          boxShadow: '0 8px 24px rgba(245,184,25,0.3)',
           transition: 'transform 0.15s, box-shadow 0.15s',
           opacity: status === 'loading' ? 0.7 : 1,
           fontFamily: 'Manrope, system-ui',
@@ -270,20 +302,20 @@ export default function QuoteForm() {
         onMouseEnter={(e) => {
           if (status !== 'loading') {
             e.currentTarget.style.transform = 'translateY(-2px)'
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(245,184,25,0.4)'
+            e.currentTarget.style.boxShadow = '0 12px 32px rgba(245,184,25,0.45)'
           }
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'translateY(0)'
-          e.currentTarget.style.boxShadow = 'none'
+          e.currentTarget.style.boxShadow = '0 8px 24px rgba(245,184,25,0.3)'
         }}
       >
         {status === 'loading' ? 'Sending…' : 'Send Brief → We reply in 4 hrs'}
       </button>
 
       {/* Footer note */}
-      <p style={{ fontSize: 12, color: '#9BA8BB', textAlign: 'center', margin: 0 }}>
-        🔒 NDA by default · We never train on your content.
+      <p style={{ fontSize: 12, color: '#3D4F6E', textAlign: 'center', margin: '10px 0 0' }}>
+        We never train on your content.
       </p>
     </form>
   )
