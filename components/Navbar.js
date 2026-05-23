@@ -82,10 +82,10 @@ const DROPDOWN_LABELS = ['About', 'Services', 'Languages', 'Industries']
 /* ─── Desktop dropdown panel ────────────────────────────────── */
 function DropdownPanel({ item }) {
   const isServices = item.label === 'Services'
-  const width = item.label === 'Services' ? 480
-    : item.label === 'Languages' ? 280
-    : item.label === 'Industries' ? 320
-    : 240
+  const width = item.label === 'Services' ? 600
+    : item.label === 'Languages' ? 300
+    : item.label === 'Industries' ? 340
+    : 260
   return (
     <div
       style={{
@@ -146,15 +146,15 @@ function DropdownPanel({ item }) {
           const desc = CHILD_DESC[child.label]
           return (
             <Link key={child.href} href={child.href} style={{ textDecoration: 'none' }}>
-              <div className="bls-dd-item">
-                <span className="bls-dd-icon">
+              <div className="bls-dd-item" style={{ padding: '10px 12px' }}>
+                <span className="bls-dd-icon" style={{ width: 28, height: 28, flexShrink: 0 }}>
                   {Icon && <Icon size={15} />}
                 </span>
                 <span>
                   <span
                     style={{
                       display: 'block',
-                      fontSize: 14,
+                      fontSize: 13,
                       fontWeight: 500,
                       color: 'var(--ink)',
                       lineHeight: 1.3,
@@ -166,7 +166,7 @@ function DropdownPanel({ item }) {
                     <span
                       style={{
                         display: 'block',
-                        fontSize: 12,
+                        fontSize: 11,
                         color: 'var(--muted-c)',
                         marginTop: 2,
                         lineHeight: 1.4,
@@ -191,6 +191,7 @@ function NavItem({ item, scrolled, isDark }) {
   const timer = useRef(null)
   const Icon = NAV_ICONS[item.label]
   const linkColor = scrolled ? (isDark ? '#F4F7FE' : '#06184F') : 'rgba(255,255,255,0.9)'
+  const hoverBg = scrolled ? (isDark ? 'rgba(255,255,255,0.08)' : '#F3F6FC') : 'rgba(255,255,255,0.12)'
 
   function enter() {
     clearTimeout(timer.current)
@@ -215,7 +216,10 @@ function NavItem({ item, scrolled, isDark }) {
           padding: '7px 12px',
           borderRadius: 8,
           whiteSpace: 'nowrap',
+          transition: 'background 0.15s',
         }}
+        onMouseEnter={(e) => (e.currentTarget.style.background = hoverBg)}
+        onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
       >
         {Icon && <Icon size={15} style={{ opacity: 0.65, flexShrink: 0 }} />}
         {item.label}
@@ -239,14 +243,17 @@ function NavItem({ item, scrolled, isDark }) {
           padding: '7px 12px',
           borderRadius: 8,
           whiteSpace: 'nowrap',
+          transition: 'background 0.15s',
         }}
+        onMouseEnter={(e) => (e.currentTarget.style.background = hoverBg)}
+        onMouseLeave={(e) => (e.currentTarget.style.background = 'none')}
       >
         {Icon && <Icon size={15} style={{ opacity: 0.65, flexShrink: 0 }} />}
         {item.label}
         <ChevronDown
           size={14}
           style={{
-            opacity: 0.5,
+            color: scrolled ? (isDark ? '#95A0BD' : '#5A6577') : 'rgba(255,255,255,0.6)',
             flexShrink: 0,
             transition: 'transform 0.2s',
             transform: open ? 'rotate(180deg)' : 'none',
