@@ -523,6 +523,33 @@ section { overflow-x: hidden; }
 
 @media (max-width: 640px) { .cta-section-pad { padding: 64px 24px !important; } }
 
+/* ─── Overflow prevention ────────────────────────────────── */
+* { max-width: 100%; }
+img { max-width: 100%; height: auto; }
+
+/* ─── Navbar logo mobile ─────────────────────────────────── */
+@media (max-width: 640px) {
+  .bls-nav-logo { height: 40px !important; max-width: 160px !important; }
+}
+
+/* ─── Mobile section padding ─────────────────────────────── */
+@media (max-width: 640px) {
+  section { padding-left: 16px !important; padding-right: 16px !important; }
+  .max-w-7xl { padding-left: 16px; padding-right: 16px; }
+}
+
+/* ─── Mobile text ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  h1 { word-break: break-word; }
+  p { font-size: 15px; }
+}
+
+/* ─── Mobile grid collapse ────────────────────────────────── */
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr !important; }
+  .grid-cols-2 { grid-template-columns: 1fr 1fr; }
+}
+
 /* ─── Footer accordion ────────────────────────────────────── */
 .footer-col-chevron { display: none; transition: transform 0.2s; }
 .footer-col-chevron.open { transform: rotate(180deg); }

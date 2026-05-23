@@ -53,7 +53,7 @@ export default function ServicePage({ params }) {
 
       {/* Content */}
       <section style={{ maxWidth: 1200, margin: '0 auto', padding: '72px 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 64 }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 lg:gap-16">
           {/* Left */}
           <div>
             <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 26, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 16 }}>
@@ -132,17 +132,17 @@ export default function ServicePage({ params }) {
       <section
         style={{
           background: 'linear-gradient(135deg, #06184F 0%, #00102E 100%)',
-          padding: '64px 24px',
+          padding: 'clamp(40px, 6vw, 80px) clamp(16px, 4vw, 40px)',
           textAlign: 'center',
         }}
       >
-        <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', marginBottom: 16 }}>
+        <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(20px, 4vw, 36px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', marginBottom: 16 }}>
           Ready to get started?
         </h2>
         <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', marginBottom: 28 }}>
           Share your brief and we&rsquo;ll reply within four working hours.
         </p>
-        <Link href="/get-quote" className="btn accent">Get a Quote for {service.title} →</Link>
+        <Link href="/get-quote" className="btn accent w-full sm:w-auto justify-center">Get a Quote for {service.title} →</Link>
       </section>
     </>
   )

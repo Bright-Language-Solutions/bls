@@ -182,11 +182,11 @@ function DropdownPanel({ item }) {
 }
 
 /* ─── Desktop nav item with hover dropdown ───────────────────── */
-function NavItem({ item, scrolled }) {
+function NavItem({ item, scrolled, isDark }) {
   const [open, setOpen] = useState(false)
   const timer = useRef(null)
   const Icon = NAV_ICONS[item.label]
-  const linkColor = scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.9)'
+  const linkColor = scrolled ? (isDark ? '#F4F7FE' : '#06184F') : 'rgba(255,255,255,0.9)'
 
   function enter() {
     clearTimeout(timer.current)
@@ -389,11 +389,28 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileExpanded, setMobileExpanded] = useState(null)
   const [scrolled, setScrolled] = useState(false)
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 80)
     window.addEventListener('scroll', handler)
-    return () => window.removeEventListener('scroll', handler)
+
+    const checkDark = () =>
+      setIsDark(
+        document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark'
+      )
+    checkDark()
+    const observer = new MutationObserver(checkDark)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class', 'data-theme'],
+    })
+
+    return () => {
+      window.removeEventListener('scroll', handler)
+      observer.disconnect()
+    }
   }, [])
 
   const toggleAccordion = (label) =>
@@ -510,7 +527,7 @@ export default function Navbar() {
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           ...(scrolled
-            ? { background: 'var(--bg, #ffffff)', borderBottom: '1px solid var(--rule, #E2E6EE)' }
+            ? { background: isDark ? '#06112E' : '#ffffff', borderBottom: `1px solid ${isDark ? '#1F2D55' : '#E2E6EE'}` }
             : { background: 'rgba(6,24,79,0.5)', borderBottom: '1px solid rgba(255,255,255,0.08)' }),
           boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 24px rgba(0,0,0,0.04)',
         }}
@@ -533,6 +550,7 @@ export default function Navbar() {
               <img
                 src="/assets/logo-dark.png"
                 alt="Bright Language Solutions"
+                className="bls-nav-logo"
                 style={{ height: 90, width: 'auto', objectFit: 'contain', maxWidth: 280 }}
               />
             </div>
@@ -544,7 +562,7 @@ export default function Navbar() {
             style={{ gap: 2 }}
           >
             {dropdownItems.map((item) => (
-              <NavItem key={item.label} item={item} scrolled={scrolled} />
+              <NavItem key={item.label} item={item} scrolled={scrolled} isDark={isDark} />
             ))}
           </div>
 
@@ -559,7 +577,7 @@ export default function Navbar() {
                   gap: 6,
                   fontSize: 15,
                   fontWeight: 500,
-                  color: scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.9)',
+                  color: scrolled ? (isDark ? '#F4F7FE' : '#06184F') : 'rgba(255,255,255,0.9)',
                   textDecoration: 'none',
                   padding: '7px 12px',
                   borderRadius: 8,
@@ -579,12 +597,14 @@ export default function Navbar() {
               style={{ width: 1, height: 20, background: 'var(--rule)', margin: '0 2px' }}
             />
 
-            <ThemeToggle />
+            <div style={{ flexShrink: 0, transform: 'scale(0.85)' }}>
+              <ThemeToggle />
+            </div>
 
             {/* "Get a Quote" — hidden on mobile */}
             <Link
               href="/get-quote"
-              className="btn accent sm hidden md:inline-flex"
+              className="btn accent sm hidden sm:inline-flex"
               style={{ gap: 6 }}
             >
               Get a Quote
@@ -598,13 +618,14 @@ export default function Navbar() {
               className="lg:hidden"
               style={{
                 background: 'transparent',
-                border: scrolled ? '1px solid var(--rule)' : '1px solid rgba(255,255,255,0.3)',
+                border: scrolled ? `1px solid ${isDark ? '#1F2D55' : 'var(--rule)'}` : '1px solid rgba(255,255,255,0.3)',
                 borderRadius: 8,
                 padding: 8,
                 cursor: 'pointer',
-                color: scrolled ? 'var(--ink)' : '#ffffff',
+                color: scrolled ? (isDark ? '#F4F7FE' : 'var(--ink)') : '#ffffff',
                 display: 'flex',
                 alignItems: 'center',
+                flexShrink: 0,
               }}
             >
               <Menu size={22} />
