@@ -11,20 +11,32 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 24px' }}>
+    <div style={{ maxWidth: 1280, margin: '0 auto', padding: '32px 16px' }}>
       <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--blue)', marginBottom: 12 }}>
         Contact
       </p>
       <h1 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.03em', marginBottom: 16, maxWidth: 480 }}>
         Let&rsquo;s talk about your project.
       </h1>
-      <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.7, maxWidth: 480, marginBottom: 56 }}>
+      <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.7, maxWidth: 480, marginBottom: 40 }}>
         Our producers are online 24/7. Fill in the form and we&rsquo;ll reply by end of business.
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gap: 32,
+          width: '100%',
+          boxSizing: 'border-box',
+          padding: '32px 16px',
+          maxWidth: 1280,
+          margin: '0 auto',
+        }}
+        className="contact-grid"
+      >
         {/* Contact info */}
-        <div>
+        <div style={{ width: '100%', minWidth: 0 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 28, marginBottom: 40 }}>
             {[
               { label: 'Email', value: 'hello@brightlanguage.in', href: 'mailto:hello@brightlanguage.in' },
@@ -48,7 +60,7 @@ export default function ContactPage() {
         </div>
 
         {/* Contact form */}
-        <div>
+        <div style={{ width: '100%', minWidth: 0 }}>
           <form
             action={`mailto:hello@brightlanguage.in`}
             method="get"

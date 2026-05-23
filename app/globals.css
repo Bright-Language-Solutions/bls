@@ -578,7 +578,11 @@ section { overflow-x: hidden; }
 
 /* ─── Navbar logo mobile ─────────────────────────────────── */
 @media (max-width: 640px) {
-  .bls-nav-logo { height: 40px !important; max-width: 160px !important; }
+  .bls-nav-logo {
+    height: 48px !important;
+    max-width: 160px !important;
+    width: auto !important;
+  }
 }
 
 /* ─── Mobile section padding ─────────────────────────────── */
@@ -614,6 +618,23 @@ section { overflow-x: hidden; }
     cursor: default;
     padding: 0 0 16px;
     pointer-events: none;
+  }
+}
+
+/* ─── Contact page grid ───────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    padding: 64px 24px !important;
   }
 }
 
