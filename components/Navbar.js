@@ -82,19 +82,22 @@ const DROPDOWN_LABELS = ['About', 'Services', 'Languages', 'Industries']
 /* ─── Desktop dropdown panel ────────────────────────────────── */
 function DropdownPanel({ item, isDark }) {
   const isServices = item.label === 'Services'
-  const width = item.label === 'Services' ? 600
-    : item.label === 'Languages' ? 300
-    : item.label === 'Industries' ? 340
+  const width = item.label === 'Services' ? 560
+    : item.label === 'Languages' ? 280
+    : item.label === 'Industries' ? 300
     : 260
   return (
     <div
       style={{
         width,
-        padding: '10px 8px 12px',
+        minWidth: width,
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        padding: '6px',
         background: isDark ? '#0D1F4A' : '#ffffff',
-        border: isDark ? '1px solid #1F2D55' : '1px solid #E2E6EE',
-        borderRadius: 12,
-        boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+        border: `1px solid ${isDark ? '#1F2D55' : '#E2E6EE'}`,
+        borderRadius: 14,
+        boxShadow: '0 12px 40px rgba(0,0,0,0.12)',
       }}
     >
       <div
@@ -146,7 +149,7 @@ function DropdownPanel({ item, isDark }) {
           const desc = CHILD_DESC[child.label]
           return (
             <Link key={child.href} href={child.href} style={{ textDecoration: 'none' }}>
-              <div className="bls-dd-item" style={{ padding: '10px 12px' }}>
+              <div className="bls-dd-item" style={{ padding: '10px 16px', width: '100%', boxSizing: 'border-box' }}>
                 <span className="bls-dd-icon" style={{ width: 28, height: 28, flexShrink: 0 }}>
                   {Icon && <Icon size={15} />}
                 </span>
@@ -186,12 +189,12 @@ function DropdownPanel({ item, isDark }) {
 }
 
 /* ─── Desktop nav item with hover dropdown ───────────────────── */
-function NavItem({ item, scrolled, isDark, isHomePage }) {
+function NavItem({ item, isDark }) {
   const [open, setOpen] = useState(false)
   const timer = useRef(null)
   const Icon = NAV_ICONS[item.label]
-  const linkColor = (scrolled || !isHomePage) ? (isDark ? '#F4F7FE' : '#06184F') : 'rgba(255,255,255,0.9)'
-  const hoverBg = (scrolled || !isHomePage) ? (isDark ? 'rgba(255,255,255,0.08)' : '#F3F6FC') : 'rgba(255,255,255,0.12)'
+  const linkColor = isDark ? '#F4F7FE' : '#06184F'
+  const hoverBg = isDark ? 'rgba(255,255,255,0.08)' : '#F3F6FC'
 
   function enter() {
     clearTimeout(timer.current)
@@ -253,7 +256,7 @@ function NavItem({ item, scrolled, isDark, isHomePage }) {
         <ChevronDown
           size={14}
           style={{
-            color: (scrolled || !isHomePage) ? (isDark ? '#95A0BD' : '#5A6577') : 'rgba(255,255,255,0.6)',
+            color: isDark ? '#95A0BD' : '#5A6577',
             flexShrink: 0,
             transition: 'transform 0.2s',
             transform: open ? 'rotate(180deg)' : 'none',
@@ -269,6 +272,7 @@ function NavItem({ item, scrolled, isDark, isHomePage }) {
           right: ['Industries', 'Languages'].includes(item.label) ? 0 : 'auto',
           marginTop: 8,
           zIndex: 50,
+          overflow: 'visible',
         }}>
           <DropdownPanel item={item} isDark={isDark} />
         </div>
@@ -661,7 +665,7 @@ export default function Navbar() {
             style={{ gap: 2 }}
           >
             {dropdownItems.map((item) => (
-              <NavItem key={item.label} item={item} scrolled={scrolled} isDark={isDark} isHomePage={isHomePage} />
+              <NavItem key={item.label} item={item} isDark={isDark} />
             ))}
           </div>
 
@@ -676,14 +680,14 @@ export default function Navbar() {
                   gap: 6,
                   fontSize: 15,
                   fontWeight: 500,
-                  color: (scrolled || !isHomePage) ? (isDark ? '#F4F7FE' : '#06184F') : 'rgba(255,255,255,0.9)',
+                  color: isDark ? '#F4F7FE' : '#06184F',
                   textDecoration: 'none',
                   padding: '7px 12px',
                   borderRadius: 8,
                   transition: 'background 0.15s',
                   whiteSpace: 'nowrap',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = (scrolled || !isHomePage) ? 'var(--tint)' : 'rgba(255,255,255,0.1)')}
+                onMouseEnter={(e) => (e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.08)' : '#F3F6FC')}
                 onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
               >
                 <Mail size={15} style={{ opacity: 0.65, flexShrink: 0 }} />
