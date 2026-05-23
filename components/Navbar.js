@@ -520,27 +520,31 @@ export default function Navbar() {
 
       {/* Main header */}
       <header
+        className={`bls-navbar ${scrolled ? (isDark ? 'scrolled-dark' : 'scrolled-light') : ''}`}
         style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 50,
+          backgroundColor: scrolled
+            ? (isDark ? '#06112E' : '#ffffff')
+            : 'transparent',
+          borderBottom: scrolled
+            ? `1px solid ${isDark ? '#1F2D55' : '#E2E6EE'}`
+            : 'none',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          ...(scrolled
-            ? { background: isDark ? '#06112E' : '#ffffff', borderBottom: `1px solid ${isDark ? '#1F2D55' : '#E2E6EE'}` }
-            : { background: 'rgba(6,24,79,0.6)', borderBottom: '1px solid rgba(255,255,255,0.08)' }),
-          boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 24px rgba(0,0,0,0.04)',
+          position: 'sticky',
+          top: 0,
+          zIndex: 40,
+          width: '100%',
+          transition: 'background-color 0.3s ease, border-color 0.3s ease',
         }}
       >
         {/* ── MOBILE NAV (< 1024px) ── */}
         <div
-          className="lg:hidden"
+          className="flex lg:hidden"
           style={{
             maxWidth: 1280,
             margin: '0 auto',
             height: 72,
             padding: '0 12px',
-            display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: 10,
@@ -549,7 +553,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
             <img
-              src={isDark ? '/assets/logo-dark.png' : '/assets/logo-light.jpg'}
+              src={scrolled && !isDark ? '/assets/logo-light.jpg' : '/assets/logo-dark.png'}
               alt="Bright Language Solutions"
               style={{ height: 52, width: 'auto', objectFit: 'contain', maxWidth: 160 }}
             />
@@ -619,7 +623,7 @@ export default function Navbar() {
           <Link href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <img
-                src="/assets/logo-dark.png"
+                src={scrolled && !isDark ? '/assets/logo-light.jpg' : '/assets/logo-dark.png'}
                 alt="Bright Language Solutions"
                 className="bls-nav-logo"
                 style={{ height: 90, width: 'auto', objectFit: 'contain', maxWidth: 280 }}
