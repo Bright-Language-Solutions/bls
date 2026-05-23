@@ -186,7 +186,7 @@ function NavItem({ item, scrolled }) {
   const [open, setOpen] = useState(false)
   const timer = useRef(null)
   const Icon = NAV_ICONS[item.label]
-  const linkColor = scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.85)'
+  const linkColor = scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.9)'
 
   function enter() {
     clearTimeout(timer.current)
@@ -510,8 +510,8 @@ export default function Navbar() {
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           ...(scrolled
-            ? { background: 'color-mix(in srgb, var(--bg) 95%, transparent)', borderBottom: '1px solid var(--rule)' }
-            : { background: 'rgba(6,24,79,0.6)', borderBottom: '1px solid rgba(255,255,255,0.08)' }),
+            ? { background: 'var(--bg, #ffffff)', borderBottom: '1px solid var(--rule, #E2E6EE)' }
+            : { background: 'rgba(6,24,79,0.5)', borderBottom: '1px solid rgba(255,255,255,0.08)' }),
           boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 24px rgba(0,0,0,0.04)',
         }}
       >
@@ -529,11 +529,11 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', height: 56 }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
               <img
                 src="/assets/logo-dark.png"
                 alt="Bright Language Solutions"
-                style={{ height: 52, width: 'auto', objectFit: 'contain', maxWidth: 200 }}
+                style={{ height: 90, width: 'auto', objectFit: 'contain', maxWidth: 280 }}
               />
             </div>
           </Link>
@@ -559,7 +559,7 @@ export default function Navbar() {
                   gap: 6,
                   fontSize: 15,
                   fontWeight: 500,
-                  color: scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.85)',
+                  color: scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.9)',
                   textDecoration: 'none',
                   padding: '7px 12px',
                   borderRadius: 8,

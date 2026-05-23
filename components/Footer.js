@@ -92,7 +92,7 @@ export default function Footer() {
               <img
                 src="/assets/logo-dark.png"
                 alt="Bright Language Solutions"
-                style={{ height: 64, width: 'auto', objectFit: 'contain', maxWidth: 260, padding: '8px 0' }}
+                style={{ height: 48, width: 'auto', objectFit: 'contain', maxWidth: 180, mixBlendMode: 'lighten', padding: '4px 0' }}
               />
             </Link>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: 20, maxWidth: 220 }}>
