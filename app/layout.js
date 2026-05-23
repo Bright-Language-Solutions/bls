@@ -35,6 +35,14 @@ export const metadata = {
     description: 'ISO-certified language services. 120+ languages. Quote in 4 hours.',
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: '/favicon.png', type: 'image/png' },
+      { url: '/assets/logo-dark.png', type: 'image/png' },
+    ],
+    apple: '/favicon.png',
+    shortcut: '/favicon.png',
+  },
 }
 
 export default function RootLayout({ children }) {
@@ -46,6 +54,9 @@ export default function RootLayout({ children }) {
             __html: `(function(){try{var t=localStorage.getItem('bls-theme'),s=window.matchMedia('(prefers-color-scheme: dark)').matches,dark=t==='dark'||(!t&&s);document.documentElement.setAttribute('data-theme',dark?'dark':'light');if(dark)document.documentElement.classList.add('dark');}catch(e){}})();`,
           }}
         />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body>
         <ClientLayoutWrapper>{children}</ClientLayoutWrapper>

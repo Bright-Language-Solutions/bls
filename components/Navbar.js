@@ -182,10 +182,11 @@ function DropdownPanel({ item }) {
 }
 
 /* ─── Desktop nav item with hover dropdown ───────────────────── */
-function NavItem({ item }) {
+function NavItem({ item, scrolled }) {
   const [open, setOpen] = useState(false)
   const timer = useRef(null)
   const Icon = NAV_ICONS[item.label]
+  const linkColor = scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.85)'
 
   function enter() {
     clearTimeout(timer.current)
@@ -205,7 +206,7 @@ function NavItem({ item }) {
           gap: 6,
           fontSize: 15,
           fontWeight: 500,
-          color: 'var(--ink)',
+          color: linkColor,
           textDecoration: 'none',
           padding: '7px 12px',
           borderRadius: 8,
@@ -227,7 +228,7 @@ function NavItem({ item }) {
           gap: 6,
           fontSize: 15,
           fontWeight: 500,
-          color: 'var(--ink)',
+          color: linkColor,
           background: 'none',
           border: 'none',
           cursor: 'pointer',
@@ -387,6 +388,13 @@ function MobileItem({ item, onClose, expanded, onToggle }) {
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileExpanded, setMobileExpanded] = useState(null)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 80)
+    window.addEventListener('scroll', handler)
+    return () => window.removeEventListener('scroll', handler)
+  }, [])
 
   const toggleAccordion = (label) =>
     setMobileExpanded((prev) => (prev === label ? null : label))
@@ -499,10 +507,11 @@ export default function Navbar() {
           position: 'sticky',
           top: 0,
           zIndex: 50,
-          backdropFilter: 'blur(14px)',
-          WebkitBackdropFilter: 'blur(14px)',
-          background: 'color-mix(in srgb, var(--bg) 94%, transparent)',
-          borderBottom: '1px solid var(--rule)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          ...(scrolled
+            ? { background: 'color-mix(in srgb, var(--bg) 95%, transparent)', borderBottom: '1px solid var(--rule)' }
+            : { background: 'rgba(6,24,79,0.6)', borderBottom: '1px solid rgba(255,255,255,0.08)' }),
           boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 24px rgba(0,0,0,0.04)',
         }}
       >
@@ -520,18 +529,13 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-            <img
-              src="/assets/logo-light.jpg"
-              alt="Bright Language Solutions"
-              className="dark:hidden"
-              style={{ height: 44, width: 'auto', objectFit: 'contain', maxWidth: 220 }}
-            />
-            <img
-              src="/assets/logo-dark.png"
-              alt="Bright Language Solutions"
-              className="hidden dark:block"
-              style={{ height: 44, width: 'auto', objectFit: 'contain', maxWidth: 220 }}
-            />
+            <div style={{ display: 'flex', alignItems: 'center', height: 56 }}>
+              <img
+                src="/assets/logo-dark.png"
+                alt="Bright Language Solutions"
+                style={{ height: 52, width: 'auto', objectFit: 'contain', maxWidth: 200 }}
+              />
+            </div>
           </Link>
 
           {/* Desktop nav */}
@@ -540,7 +544,7 @@ export default function Navbar() {
             style={{ gap: 2 }}
           >
             {dropdownItems.map((item) => (
-              <NavItem key={item.label} item={item} />
+              <NavItem key={item.label} item={item} scrolled={scrolled} />
             ))}
           </div>
 
@@ -555,14 +559,14 @@ export default function Navbar() {
                   gap: 6,
                   fontSize: 15,
                   fontWeight: 500,
-                  color: 'var(--ink)',
+                  color: scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.85)',
                   textDecoration: 'none',
                   padding: '7px 12px',
                   borderRadius: 8,
                   transition: 'background 0.15s',
                   whiteSpace: 'nowrap',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--tint)')}
+                onMouseEnter={(e) => (e.currentTarget.style.background = scrolled ? 'var(--tint)' : 'rgba(255,255,255,0.1)')}
                 onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
               >
                 <Mail size={15} style={{ opacity: 0.65, flexShrink: 0 }} />
@@ -594,11 +598,11 @@ export default function Navbar() {
               className="lg:hidden"
               style={{
                 background: 'transparent',
-                border: '1px solid var(--rule)',
+                border: scrolled ? '1px solid var(--rule)' : '1px solid rgba(255,255,255,0.3)',
                 borderRadius: 8,
                 padding: 8,
                 cursor: 'pointer',
-                color: 'var(--ink)',
+                color: scrolled ? 'var(--ink)' : '#ffffff',
                 display: 'flex',
                 alignItems: 'center',
               }}

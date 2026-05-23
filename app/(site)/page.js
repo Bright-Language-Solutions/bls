@@ -92,12 +92,34 @@ export default function HomePage() {
         style={{
           position: 'relative',
           overflow: 'hidden',
-          background: 'var(--bg)',
+          background: 'linear-gradient(135deg, #06184F 0%, #0A2468 40%, #0D3080 60%, #1466DB 100%)',
         }}
       >
         <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 80% 60% at 65% 50%, var(--tint-2), transparent)' }}
+          aria-hidden="true"
+          style={{
+            position: 'absolute', top: -200, right: -100,
+            width: 600, height: 600, borderRadius: '50%', pointerEvents: 'none',
+            background: 'radial-gradient(circle, rgba(20,102,219,0.3), transparent)',
+            filter: 'blur(80px)',
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute', bottom: -100, left: -50,
+            width: 300, height: 300, borderRadius: '50%', pointerEvents: 'none',
+            background: 'radial-gradient(circle, rgba(245,184,25,0.15), transparent)',
+            filter: 'blur(60px)',
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none',
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+          }}
         />
 
         <div style={{ padding: '64px 24px 72px', maxWidth: 1200, margin: '0 auto' }}>
@@ -106,10 +128,10 @@ export default function HomePage() {
             {/* Left */}
             <div>
               <div style={{ display: 'flex', gap: 10, marginBottom: 24, flexWrap: 'wrap' }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 14px', borderRadius: 999, background: 'var(--tint-2)', color: 'var(--blue)', fontSize: 13, fontWeight: 600 }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 14px', borderRadius: 999, background: 'rgba(20,102,219,0.3)', color: '#ffffff', fontSize: 13, fontWeight: 600 }}>
                   Quote in 4 hours · Kickoff in 24
                 </span>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 14px', borderRadius: 999, background: 'var(--tint-2)', color: 'var(--ink)', fontSize: 13, fontWeight: 600 }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 14px', borderRadius: 999, background: 'rgba(255,255,255,0.12)', color: '#ffffff', fontSize: 13, fontWeight: 600 }}>
                   ⭐ 4.9 · 240+ projects/yr
                 </span>
               </div>
@@ -120,7 +142,7 @@ export default function HomePage() {
                   fontSize: 'clamp(36px, 4.5vw, 64px)',
                   fontWeight: 700,
                   letterSpacing: '-0.03em',
-                  color: 'var(--ink)',
+                  color: '#ffffff',
                   lineHeight: 1.1,
                   marginBottom: 20,
                 }}
@@ -133,21 +155,21 @@ export default function HomePage() {
                     viewBox="0 0 120 12"
                     style={{ position: 'absolute', bottom: -4, left: 0, width: '100%', height: 12 }}
                   >
-                    <path d="M4 8 Q30 2 60 8 Q90 14 116 8" stroke="var(--yellow)" strokeWidth="3" fill="none" strokeLinecap="round" />
+                    <path d="M4 8 Q30 2 60 8 Q90 14 116 8" stroke="#F5B819" strokeWidth="3" fill="none" strokeLinecap="round" />
                   </svg>
                 </span>{' '}
                 global business.
               </h1>
 
-              <p style={{ fontSize: 17, color: 'var(--muted-c)', lineHeight: 1.7, marginBottom: 32, maxWidth: 480 }}>
+              <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.75)', lineHeight: 1.7, marginBottom: 32, maxWidth: 480 }}>
                 ISO-certified translation, localisation, voice, and interpretation in 120+ languages — engineered by linguists, reviewed by humans, delivered on time.
               </p>
 
               {/* B1 — CTA buttons: full-width stacked on mobile */}
               <div className="hero-cta">
                 <Link href="/get-quote" className="btn accent">Get a Free Quote →</Link>
-                <Link href="/services" className="btn ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--ink)"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+                <Link href="/services" className="btn ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, border: '1px solid rgba(255,255,255,0.3)', color: '#ffffff', background: 'rgba(255,255,255,0.08)' }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff"><polygon points="5 3 19 12 5 21 5 3" /></svg>
                   Browse Services
                 </Link>
               </div>
@@ -169,15 +191,15 @@ export default function HomePage() {
                     </div>
                   ))}
                 </div>
-                <span style={{ fontSize: 13, color: 'var(--muted-c)' }}>Joined by 500+ global teams this year</span>
+                <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Joined by 500+ global teams this year</span>
               </div>
 
               {/* B1 — Trust stats: flex on desktop, 3-col grid on mobile */}
               <div className="hero-stats">
                 {[['1.4B+', 'words delivered'], ['120+', 'languages'], ['500+', 'global clients']].map(([num, lbl]) => (
                   <div key={lbl}>
-                    <p style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 28, fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', margin: 0 }}>{num}</p>
-                    <p style={{ fontSize: 13, color: 'var(--muted-c)', margin: 0 }}>{lbl}</p>
+                    <p style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 28, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em', margin: 0 }}>{num}</p>
+                    <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', margin: 0 }}>{lbl}</p>
                   </div>
                 ))}
               </div>
