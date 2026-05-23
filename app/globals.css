@@ -596,3 +596,12 @@ img { max-width: 100%; height: auto; }
     gap: 0 !important;
   }
 }
+
+/* ─── Get Quote page grid ─────────────────────────────────── */
+@media (min-width: 1024px) {
+  .get-quote-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 64px !important;
+    padding: 64px 24px !important;
+  }
+}

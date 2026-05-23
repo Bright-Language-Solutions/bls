@@ -14,9 +14,20 @@ export const metadata = {
 export default function GetQuotePage() {
   return (
     <div className="px-4 py-8 lg:px-6 lg:py-16" style={{ maxWidth: 1200, margin: '0 auto', background: 'var(--bg)' }}>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+      <div
+        className="get-quote-grid"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gap: 32,
+          width: '100%',
+          maxWidth: 1280,
+          margin: '0 auto',
+          padding: '32px 16px',
+        }}
+      >
         {/* Left — context */}
-        <div className="text-center lg:text-left">
+        <div className="text-center lg:text-left" style={{ width: '100%', minWidth: 0 }}>
           <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--blue)', marginBottom: 12 }}>
             Get a quote
           </p>
@@ -73,7 +84,7 @@ export default function GetQuotePage() {
         </div>
 
         {/* Right — form */}
-        <div>
+        <div style={{ width: '100%', minWidth: 0 }}>
           <QuoteForm />
         </div>
       </div>
