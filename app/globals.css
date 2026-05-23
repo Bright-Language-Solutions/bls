@@ -4,6 +4,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Global reset — mobile overflow prevention ────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl {
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  [class*="grid-cols-2"]:not(.keep-cols),
+  [class*="grid-cols-3"]:not(.keep-cols),
+  [class*="grid-cols-4"]:not(.keep-cols),
+  [class*="grid-cols-5"]:not(.keep-cols) {
+    grid-template-columns: 1fr !important;
+  }
+
+  .grid-cols-2.keep-cols {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
 @layer base {
   :root {
     /* shadcn/ui tokens */
@@ -535,8 +574,7 @@ section { overflow-x: hidden; }
 @media (max-width: 640px) { .cta-section-pad { padding: 64px 24px !important; } }
 
 /* ─── Overflow prevention ────────────────────────────────── */
-* { max-width: 100%; }
-img { max-width: 100%; height: auto; }
+/* Covered by the global reset block above */
 
 /* ─── Navbar logo mobile ─────────────────────────────────── */
 @media (max-width: 640px) {
@@ -555,11 +593,7 @@ img { max-width: 100%; height: auto; }
   p { font-size: 15px; }
 }
 
-/* ─── Mobile grid collapse ────────────────────────────────── */
-@media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr !important; }
-  .grid-cols-2 { grid-template-columns: 1fr 1fr; }
-}
+/* ─── Mobile grid collapse — handled by global reset above ── */
 
 /* ─── Footer accordion ────────────────────────────────────── */
 .footer-col-chevron { display: none; transition: transform 0.2s; }
@@ -598,10 +632,18 @@ img { max-width: 100%; height: auto; }
 }
 
 /* ─── Get Quote page grid ─────────────────────────────────── */
+.get-quote-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 @media (min-width: 1024px) {
   .get-quote-grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 64px !important;
-    padding: 64px 24px !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    padding: 64px 24px;
   }
 }

@@ -569,13 +569,16 @@ export default function Navbar() {
         <div
           className="flex lg:hidden"
           style={{
-            maxWidth: 1280,
+            width: '100%',
+            maxWidth: '100vw',
+            overflowX: 'hidden',
+            boxSizing: 'border-box',
             margin: '0 auto',
-            height: 72,
+            height: 64,
             padding: '0 12px',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: 10,
+            gap: 8,
           }}
         >
           {/* Logo */}
@@ -583,7 +586,7 @@ export default function Navbar() {
             <img
               src={scrolled && !isDark ? '/assets/logo-light.jpg' : '/assets/logo-dark.png'}
               alt="Bright Language Solutions"
-              style={{ height: 52, width: 'auto', objectFit: 'contain', maxWidth: 160 }}
+              style={{ height: 36, width: 'auto', objectFit: 'contain', maxWidth: 120 }}
             />
           </Link>
 
@@ -596,14 +599,15 @@ export default function Navbar() {
               style={{
                 background: 'linear-gradient(135deg, #F5B819, #E8A800)',
                 color: '#06184F',
-                fontSize: 15,
+                fontSize: 13,
                 fontWeight: 700,
-                padding: '10px 20px',
+                padding: '8px 14px',
                 borderRadius: 999,
                 whiteSpace: 'nowrap',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 6,
+                flexShrink: 0,
                 boxShadow: isDark ? '0 4px 20px rgba(245,184,25,0.5)' : '0 4px 16px rgba(245,184,25,0.4)',
                 textDecoration: 'none',
               }}
@@ -615,8 +619,8 @@ export default function Navbar() {
               aria-label="Open navigation"
               onClick={() => setMobileOpen(true)}
               style={{
-                width: 44,
-                height: 44,
+                width: 40,
+                height: 40,
                 borderRadius: 10,
                 display: 'flex',
                 alignItems: 'center',

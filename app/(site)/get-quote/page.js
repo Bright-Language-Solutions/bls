@@ -13,14 +13,10 @@ export const metadata = {
 
 export default function GetQuotePage() {
   return (
-    <div className="px-4 py-8 lg:px-6 lg:py-16" style={{ maxWidth: 1200, margin: '0 auto', background: 'var(--bg)' }}>
+    <main style={{ width: '100%', maxWidth: '100vw', overflowX: 'hidden', background: 'var(--bg)' }}>
       <div
         className="get-quote-grid"
         style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: 32,
-          width: '100%',
           maxWidth: 1280,
           margin: '0 auto',
           padding: '32px 16px',
@@ -88,6 +84,6 @@ export default function GetQuotePage() {
           <QuoteForm />
         </div>
       </div>
-    </div>
+    </main>
   )
 }

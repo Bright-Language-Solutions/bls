@@ -1,6 +1,13 @@
 import './globals.css'
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper'
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://www.brightlanguagesolutions.com'),
   title: {
