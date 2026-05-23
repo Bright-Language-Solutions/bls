@@ -82,10 +82,14 @@ const DROPDOWN_LABELS = ['About', 'Services', 'Languages', 'Industries']
 /* ─── Desktop dropdown panel ────────────────────────────────── */
 function DropdownPanel({ item }) {
   const isServices = item.label === 'Services'
+  const width = item.label === 'Services' ? 480
+    : item.label === 'Languages' ? 280
+    : item.label === 'Industries' ? 320
+    : 240
   return (
     <div
       style={{
-        width: isServices ? 580 : 300,
+        width,
         padding: '10px 8px 12px',
         background: 'var(--bg)',
         border: '1px solid var(--rule)',
@@ -251,7 +255,14 @@ function NavItem({ item, scrolled, isDark }) {
       </button>
 
       {open && (
-        <div style={{ position: 'absolute', top: 'calc(100% + 4px)', left: 0, zIndex: 100 }}>
+        <div style={{
+          position: 'absolute',
+          top: '100%',
+          left: ['Industries', 'Languages'].includes(item.label) ? 'auto' : 0,
+          right: ['Industries', 'Languages'].includes(item.label) ? 0 : 'auto',
+          marginTop: 8,
+          zIndex: 50,
+        }}>
           <DropdownPanel item={item} />
         </div>
       )}

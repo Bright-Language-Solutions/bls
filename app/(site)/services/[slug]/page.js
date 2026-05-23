@@ -31,8 +31,8 @@ export default function ServicePage({ params }) {
   return (
     <>
       {/* Hero band */}
-      <section style={{ background: 'var(--navy)', padding: '72px 24px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+      <section style={{ background: 'var(--navy)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <Link
             href="/services"
             style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 32 }}
@@ -52,10 +52,10 @@ export default function ServicePage({ params }) {
       </section>
 
       {/* Content */}
-      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '72px 24px' }}>
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 lg:gap-16">
-          {/* Left */}
-          <div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main content */}
+          <div className="lg:col-span-2">
             <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 26, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 16 }}>
               Overview
             </h2>
@@ -79,8 +79,8 @@ export default function ServicePage({ params }) {
             </ul>
           </div>
 
-          {/* Right */}
-          <div>
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
             <div className="bls-card" style={{ padding: 28, marginBottom: 24 }}>
               <h3 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 18, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 20 }}>
                 Get a quote for this service

@@ -37,7 +37,7 @@ export default function RegionPage({ params }) {
   const langs = languages[meta.key] || []
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 24px' }}>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       {/* Back */}
       <Link
         href="/languages"
@@ -59,19 +59,12 @@ export default function RegionPage({ params }) {
       </div>
 
       {/* Language grid */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-          gap: 16,
-          marginBottom: 64,
-        }}
-      >
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" style={{ marginBottom: 64 }}>
         {langs.map((lang) => (
           <div
             key={lang.slug}
             className="bls-card"
-            style={{ padding: '20px 18px' }}
+            style={{ padding: '20px 18px', width: '100%' }}
           >
             <p
               style={{

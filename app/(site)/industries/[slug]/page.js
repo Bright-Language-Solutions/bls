@@ -30,13 +30,13 @@ export default function IndustryPage({ params }) {
   const industry = industries.find((i) => i.slug === params.slug)
   if (!industry) notFound()
 
-  const offeredServices = services.filter((s) => industry.servicesOffered.includes(s.slug))
+  const offeredServices = services.filter((s) => (industry.servicesOffered || []).includes(s.slug))
 
   return (
     <>
-      {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #06184F 0%, #00102E 100%)', padding: '72px 24px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+      {/* Hero band — full width navy */}
+      <section style={{ background: 'linear-gradient(135deg, #06184F 0%, #00102E 100%)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <Link
             href="/industries"
             style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 32 }}
@@ -44,73 +44,77 @@ export default function IndustryPage({ params }) {
             ← All industries
           </Link>
           <div style={{ fontSize: 52, marginBottom: 20 }}>{EMOJIS[industry.slug] || '🌐'}</div>
-          <h1 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.03em', marginBottom: 16, maxWidth: 600 }}>
+          <h1 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.03em', marginBottom: 16 }}>
             {industry.title}
           </h1>
-          <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', maxWidth: 560, lineHeight: 1.65 }}>
+          <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', maxWidth: 640, lineHeight: 1.65 }}>
             {industry.description}
           </p>
         </div>
       </section>
 
-      {/* Highlights + Services */}
-      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '72px 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
-          <div>
-            <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 26, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 20 }}>
-              Why teams choose us
-            </h2>
-            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {industry.highlights.map((h) => (
-                <li key={h} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, fontSize: 15, color: 'var(--ink)', lineHeight: 1.65 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-                    <circle cx="12" cy="12" r="10" fill="var(--blue)" opacity="0.12" />
-                    <polyline points="8 12 11 15 16 9" stroke="var(--blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {h}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 26, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 20 }}>
+      {/* Services offered — chip grid */}
+      {offeredServices.length > 0 && (
+        <section style={{ borderBottom: '1px solid var(--rule)' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 22, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 20 }}>
               Services for {industry.title}
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
               {offeredServices.map((svc) => (
                 <Link
                   key={svc.slug}
                   href={`/services/${svc.slug}`}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '14px 18px',
-                    borderRadius: 12,
+                    padding: '10px 20px',
+                    borderRadius: 999,
                     border: '1px solid var(--rule)',
-                    textDecoration: 'none',
-                    color: 'var(--ink)',
-                    fontSize: 15,
+                    fontSize: 14,
                     fontWeight: 500,
-                    transition: 'border-color 0.2s, background 0.2s',
+                    color: 'var(--ink)',
+                    textDecoration: 'none',
+                    background: 'var(--tint)',
+                    transition: 'border-color 0.2s, background 0.2s, color 0.2s',
                   }}
-                  className="hover:border-[var(--blue)] hover:bg-[var(--tint)]"
+                  className="hover:border-[var(--blue)] hover:bg-[var(--blue)] hover:text-white"
                 >
                   {svc.title}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted-c)" strokeWidth="2" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
                 </Link>
               ))}
             </div>
           </div>
-        </div>
+        </section>
+      )}
 
-        {/* CTA */}
-        <div style={{ marginTop: 64, textAlign: 'center', padding: '48px', background: 'var(--tint)', borderRadius: 20 }}>
-          <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 28, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 12 }}>
+      {/* Highlights — 3-col grid on desktop */}
+      <section>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 26, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 32 }}>
+            Why teams choose us
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {industry.highlights.map((h) => (
+              <div key={h} className="bls-card" style={{ padding: '20px 24px' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, fontSize: 15, color: 'var(--ink)', lineHeight: 1.65 }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                    <circle cx="12" cy="12" r="10" fill="var(--blue)" opacity="0.12" />
+                    <polyline points="8 12 11 15 16 9" stroke="var(--blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  {h}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA band — full width navy gradient */}
+      <section style={{ background: 'linear-gradient(135deg, #06184F 0%, #00102E 100%)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 28, fontWeight: 600, color: '#fff', letterSpacing: '-0.02em', marginBottom: 12 }}>
             Ready to work with {industry.title} specialists?
           </h2>
-          <p style={{ fontSize: 15, color: 'var(--muted-c)', marginBottom: 28 }}>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', marginBottom: 28 }}>
             Share your brief and our producer will respond within four working hours.
           </p>
           <Link href="/get-quote" className="btn accent">Get a Quote →</Link>
