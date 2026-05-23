@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { Sun, Moon, MoonStar } from 'lucide-react'
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ size }) {
   const [dark, setDark] = useState(false)
+  const isMobile = size === 'mobile'
 
   useEffect(() => {
     const saved = localStorage.getItem('bls-theme')
@@ -26,6 +28,64 @@ export default function ThemeToggle() {
     applyTheme(next)
   }
 
+  if (isMobile) {
+    return (
+      <button
+        onClick={toggle}
+        aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+        style={{
+          width: 88,
+          height: 44,
+          borderRadius: 999,
+          background: dark ? '#0D1F4A' : '#F3F6FC',
+          border: dark ? '2px solid #1F2D55' : '2px solid #E2E6EE',
+          boxShadow: dark ? '0 0 12px rgba(20,102,219,0.3)' : 'none',
+          position: 'relative',
+          cursor: 'pointer',
+          flexShrink: 0,
+          padding: 0,
+          transition: 'background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
+        }}
+      >
+        {/* Left icon — opposite mode */}
+        <span
+          style={{
+            position: 'absolute',
+            left: 10,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            pointerEvents: 'none',
+          }}
+        >
+          {dark ? <Sun size={16} color="#95A0BD" /> : <Moon size={16} color="#9BA8BB" />}
+        </span>
+
+        {/* Knob — always on right */}
+        <span
+          style={{
+            position: 'absolute',
+            top: 4,
+            right: 4,
+            width: 36,
+            height: 36,
+            borderRadius: '50%',
+            background: dark ? '#1466DB' : '#06184F',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'background 0.25s ease',
+            pointerEvents: 'none',
+          }}
+        >
+          {dark ? <MoonStar size={16} color="#ffffff" /> : <Sun size={16} color="#ffffff" />}
+        </span>
+      </button>
+    )
+  }
+
+  // Default (desktop) — unchanged
   return (
     <button
       onClick={toggle}

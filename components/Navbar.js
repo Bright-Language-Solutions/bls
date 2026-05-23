@@ -528,17 +528,88 @@ export default function Navbar() {
           WebkitBackdropFilter: 'blur(12px)',
           ...(scrolled
             ? { background: isDark ? '#06112E' : '#ffffff', borderBottom: `1px solid ${isDark ? '#1F2D55' : '#E2E6EE'}` }
-            : { background: 'rgba(6,24,79,0.5)', borderBottom: '1px solid rgba(255,255,255,0.08)' }),
+            : { background: 'rgba(6,24,79,0.6)', borderBottom: '1px solid rgba(255,255,255,0.08)' }),
           boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 24px rgba(0,0,0,0.04)',
         }}
       >
+        {/* ── MOBILE NAV (< 1024px) ── */}
         <div
-          className="h-14 md:h-[68px]"
+          className="lg:hidden"
           style={{
             maxWidth: 1280,
             margin: '0 auto',
-            padding: '0 16px',
+            height: 72,
+            padding: '0 12px',
             display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 10,
+          }}
+        >
+          {/* Logo */}
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+            <img
+              src={isDark ? '/assets/logo-dark.png' : '/assets/logo-light.jpg'}
+              alt="Bright Language Solutions"
+              style={{ height: 52, width: 'auto', objectFit: 'contain', maxWidth: 160 }}
+            />
+          </Link>
+
+          {/* Right: ThemeToggle | Get a Quote | Hamburger */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+            <ThemeToggle size="mobile" />
+
+            <Link
+              href="/get-quote"
+              style={{
+                background: 'linear-gradient(135deg, #F5B819, #E8A800)',
+                color: '#06184F',
+                fontSize: 15,
+                fontWeight: 700,
+                padding: '10px 20px',
+                borderRadius: 999,
+                whiteSpace: 'nowrap',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                boxShadow: isDark ? '0 4px 20px rgba(245,184,25,0.5)' : '0 4px 16px rgba(245,184,25,0.4)',
+                textDecoration: 'none',
+              }}
+            >
+              Get a Quote →
+            </Link>
+
+            <button
+              aria-label="Open navigation"
+              onClick={() => setMobileOpen(true)}
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 10,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: isDark ? '#0D1F4A' : '#F3F6FC',
+                border: isDark ? '1.5px solid #1466DB' : '1.5px solid #E2E6EE',
+                boxShadow: isDark ? '0 0 8px rgba(20,102,219,0.2)' : 'none',
+                cursor: 'pointer',
+                color: 'var(--ink)',
+                flexShrink: 0,
+              }}
+            >
+              <Menu size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* ── DESKTOP NAV (≥ 1024px) ── */}
+        <div
+          className="hidden lg:flex"
+          style={{
+            maxWidth: 1280,
+            margin: '0 auto',
+            height: 68,
+            padding: '0 16px',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: 12,
@@ -556,9 +627,9 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop nav */}
+          {/* Nav links */}
           <div
-            className="hidden lg:flex items-center flex-1 justify-center"
+            className="flex items-center flex-1 justify-center"
             style={{ gap: 2 }}
           >
             {dropdownItems.map((item) => (
@@ -571,8 +642,8 @@ export default function Navbar() {
             {contactItem && (
               <Link
                 href="/contact"
-                className="hidden lg:flex"
                 style={{
+                  display: 'flex',
                   alignItems: 'center',
                   gap: 6,
                   fontSize: 15,
@@ -592,44 +663,20 @@ export default function Navbar() {
               </Link>
             )}
 
-            <div
-              className="hidden lg:block"
-              style={{ width: 1, height: 20, background: 'var(--rule)', margin: '0 2px' }}
-            />
+            <div style={{ width: 1, height: 20, background: 'var(--rule)', margin: '0 2px' }} />
 
             <div style={{ flexShrink: 0, transform: 'scale(0.85)' }}>
               <ThemeToggle />
             </div>
 
-            {/* "Get a Quote" — hidden on mobile */}
             <Link
               href="/get-quote"
-              className="btn accent sm hidden sm:inline-flex"
+              className="btn accent sm"
               style={{ gap: 6 }}
             >
               Get a Quote
               <ArrowRight size={14} />
             </Link>
-
-            {/* Mobile hamburger */}
-            <button
-              aria-label="Open navigation"
-              onClick={() => setMobileOpen(true)}
-              className="lg:hidden"
-              style={{
-                background: 'transparent',
-                border: scrolled ? `1px solid ${isDark ? '#1F2D55' : 'var(--rule)'}` : '1px solid rgba(255,255,255,0.3)',
-                borderRadius: 8,
-                padding: 8,
-                cursor: 'pointer',
-                color: scrolled ? (isDark ? '#F4F7FE' : 'var(--ink)') : '#ffffff',
-                display: 'flex',
-                alignItems: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <Menu size={22} />
-            </button>
           </div>
         </div>
       </header>
