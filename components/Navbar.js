@@ -80,7 +80,7 @@ const CHILD_DESC = {
 const DROPDOWN_LABELS = ['About', 'Services', 'Languages', 'Industries']
 
 /* ─── Desktop dropdown panel ────────────────────────────────── */
-function DropdownPanel({ item }) {
+function DropdownPanel({ item, isDark }) {
   const isServices = item.label === 'Services'
   const width = item.label === 'Services' ? 600
     : item.label === 'Languages' ? 300
@@ -91,8 +91,8 @@ function DropdownPanel({ item }) {
       style={{
         width,
         padding: '10px 8px 12px',
-        background: 'var(--bg)',
-        border: '1px solid var(--rule)',
+        background: isDark ? '#0D1F4A' : '#ffffff',
+        border: isDark ? '1px solid #1F2D55' : '1px solid #E2E6EE',
         borderRadius: 12,
         boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
       }}
@@ -104,7 +104,7 @@ function DropdownPanel({ item }) {
           justifyContent: 'space-between',
           padding: '4px 10px 10px',
           marginBottom: 6,
-          borderBottom: '1px solid var(--rule)',
+          borderBottom: isDark ? '1px solid #1F2D55' : '1px solid #E2E6EE',
         }}
       >
         <span
@@ -113,7 +113,7 @@ function DropdownPanel({ item }) {
             fontWeight: 700,
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: 'var(--muted-c)',
+            color: isDark ? '#95A0BD' : '#5A6577',
           }}
         >
           {item.label}
@@ -156,7 +156,7 @@ function DropdownPanel({ item }) {
                       display: 'block',
                       fontSize: 13,
                       fontWeight: 500,
-                      color: 'var(--ink)',
+                      color: isDark ? '#F4F7FE' : '#06184F',
                       lineHeight: 1.3,
                     }}
                   >
@@ -167,7 +167,7 @@ function DropdownPanel({ item }) {
                       style={{
                         display: 'block',
                         fontSize: 11,
-                        color: 'var(--muted-c)',
+                        color: isDark ? '#95A0BD' : '#5A6577',
                         marginTop: 2,
                         lineHeight: 1.4,
                       }}
@@ -186,12 +186,12 @@ function DropdownPanel({ item }) {
 }
 
 /* ─── Desktop nav item with hover dropdown ───────────────────── */
-function NavItem({ item, scrolled, isDark }) {
+function NavItem({ item, scrolled, isDark, isHomePage }) {
   const [open, setOpen] = useState(false)
   const timer = useRef(null)
   const Icon = NAV_ICONS[item.label]
-  const linkColor = scrolled ? (isDark ? '#F4F7FE' : '#06184F') : 'rgba(255,255,255,0.9)'
-  const hoverBg = scrolled ? (isDark ? 'rgba(255,255,255,0.08)' : '#F3F6FC') : 'rgba(255,255,255,0.12)'
+  const linkColor = (scrolled || !isHomePage) ? (isDark ? '#F4F7FE' : '#06184F') : 'rgba(255,255,255,0.9)'
+  const hoverBg = (scrolled || !isHomePage) ? (isDark ? 'rgba(255,255,255,0.08)' : '#F3F6FC') : 'rgba(255,255,255,0.12)'
 
   function enter() {
     clearTimeout(timer.current)
@@ -253,7 +253,7 @@ function NavItem({ item, scrolled, isDark }) {
         <ChevronDown
           size={14}
           style={{
-            color: scrolled ? (isDark ? '#95A0BD' : '#5A6577') : 'rgba(255,255,255,0.6)',
+            color: (scrolled || !isHomePage) ? (isDark ? '#95A0BD' : '#5A6577') : 'rgba(255,255,255,0.6)',
             flexShrink: 0,
             transition: 'transform 0.2s',
             transform: open ? 'rotate(180deg)' : 'none',
@@ -270,7 +270,7 @@ function NavItem({ item, scrolled, isDark }) {
           marginTop: 8,
           zIndex: 50,
         }}>
-          <DropdownPanel item={item} />
+          <DropdownPanel item={item} isDark={isDark} />
         </div>
       )}
     </div>
@@ -409,9 +409,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [isDark, setIsDark] = useState(false)
 
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
+  const isHomePage = pathname === '/'
+
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 80)
-    window.addEventListener('scroll', handler)
+    const checkScroll = () => {
+      setScrolled(window.scrollY > 80)
+    }
+    checkScroll()
+    window.addEventListener('scroll', checkScroll, { passive: true })
 
     const checkDark = () =>
       setIsDark(
@@ -426,7 +432,7 @@ export default function Navbar() {
     })
 
     return () => {
-      window.removeEventListener('scroll', handler)
+      window.removeEventListener('scroll', checkScroll)
       observer.disconnect()
     }
   }, [])
@@ -540,10 +546,10 @@ export default function Navbar() {
       <header
         className={`bls-navbar ${scrolled ? (isDark ? 'scrolled-dark' : 'scrolled-light') : ''}`}
         style={{
-          backgroundColor: scrolled
+          backgroundColor: (scrolled || !isHomePage)
             ? (isDark ? '#06112E' : '#ffffff')
             : 'transparent',
-          borderBottom: scrolled
+          borderBottom: (scrolled || !isHomePage)
             ? `1px solid ${isDark ? '#1F2D55' : '#E2E6EE'}`
             : 'none',
           backdropFilter: 'blur(12px)',
@@ -655,7 +661,7 @@ export default function Navbar() {
             style={{ gap: 2 }}
           >
             {dropdownItems.map((item) => (
-              <NavItem key={item.label} item={item} scrolled={scrolled} isDark={isDark} />
+              <NavItem key={item.label} item={item} scrolled={scrolled} isDark={isDark} isHomePage={isHomePage} />
             ))}
           </div>
 
@@ -670,14 +676,14 @@ export default function Navbar() {
                   gap: 6,
                   fontSize: 15,
                   fontWeight: 500,
-                  color: scrolled ? (isDark ? '#F4F7FE' : '#06184F') : 'rgba(255,255,255,0.9)',
+                  color: (scrolled || !isHomePage) ? (isDark ? '#F4F7FE' : '#06184F') : 'rgba(255,255,255,0.9)',
                   textDecoration: 'none',
                   padding: '7px 12px',
                   borderRadius: 8,
                   transition: 'background 0.15s',
                   whiteSpace: 'nowrap',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = scrolled ? 'var(--tint)' : 'rgba(255,255,255,0.1)')}
+                onMouseEnter={(e) => (e.currentTarget.style.background = (scrolled || !isHomePage) ? 'var(--tint)' : 'rgba(255,255,255,0.1)')}
                 onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
               >
                 <Mail size={15} style={{ opacity: 0.65, flexShrink: 0 }} />
