@@ -13,14 +13,14 @@ export const metadata = {
 
 export default function GetQuotePage() {
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 24px', background: 'var(--bg)' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
+    <div className="px-4 py-8 lg:px-6 lg:py-16" style={{ maxWidth: 1200, margin: '0 auto', background: 'var(--bg)' }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
         {/* Left — context */}
-        <div>
+        <div className="text-center lg:text-left">
           <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--blue)', marginBottom: 12 }}>
             Get a quote
           </p>
-          <h1 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.03em', marginBottom: 20, maxWidth: 420 }}>
+          <h1 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.03em', marginBottom: 20, maxWidth: 420 }}>
             Send us your brief.
           </h1>
           <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.75, marginBottom: 36 }}>
