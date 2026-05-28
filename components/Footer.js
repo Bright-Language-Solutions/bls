@@ -166,41 +166,6 @@ export default function Footer() {
           </FooterCol>
         </div>
 
-        {/* Newsletter strip */}
-        <div
-          style={{
-            borderTop: '1px solid rgba(255,255,255,0.08)',
-            borderBottom: '1px solid rgba(255,255,255,0.08)',
-            padding: '28px 0', marginBottom: 28,
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            gap: 16, flexWrap: 'wrap',
-          }}
-          className="footer-newsletter-row"
-        >
-          <p style={{ fontSize: 15, fontWeight: 600, color: '#fff', margin: 0 }}>
-            Industry insights, delivered monthly.
-          </p>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            style={{ display: 'flex', gap: 8, flexShrink: 0 }}
-            className="footer-newsletter-form"
-          >
-            <input
-              type="email"
-              placeholder="you@company.com"
-              style={{
-                padding: '10px 16px', borderRadius: 999,
-                border: '1px solid rgba(255,255,255,0.15)',
-                background: 'rgba(255,255,255,0.06)', color: '#fff',
-                fontSize: 14, outline: 'none', width: 220,
-              }}
-            />
-            <button type="submit" className="btn accent sm" style={{ whiteSpace: 'nowrap' }}>
-              Subscribe →
-            </button>
-          </form>
-        </div>
-
         {/* Bottom bar */}
         <div
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}

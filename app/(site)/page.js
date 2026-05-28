@@ -174,26 +174,6 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* A1 — Avatar circles */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 32 }}>
-                <div style={{ display: 'flex' }}>
-                  {['MK', 'AS', 'JR', 'PV', 'NL'].map((init, i) => (
-                    <div
-                      key={init}
-                      style={{
-                        width: 32, height: 32, borderRadius: '50%',
-                        background: 'var(--navy)', border: '2px solid #fff',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        marginLeft: i > 0 ? -8 : 0,
-                      }}
-                    >
-                      <span style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 10, fontWeight: 700, color: '#fff' }}>{init}</span>
-                    </div>
-                  ))}
-                </div>
-                <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Joined by 500+ global teams this year</span>
-              </div>
-
               {/* B1 — Trust stats: flex on desktop, 3-col grid on mobile */}
               <div className="hero-stats">
                 {[['1.4B+', 'words delivered'], ['120+', 'languages'], ['500+', 'global clients']].map(([num, lbl]) => (
