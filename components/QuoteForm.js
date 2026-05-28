@@ -147,86 +147,86 @@ export default function QuoteForm() {
         </div>
       )}
 
-      {/* Name */}
-      <div style={fieldWrap}>
-        <label style={labelStyle}>
-          <User size={16} color="#1466DB" />
-          Your Name
-        </label>
-        <input
-          type="text"
-          placeholder="Priya Sharma"
-          required
-          value={fields.name}
-          onChange={set('name')}
-          style={inputStyle('name')}
-          {...fp('name')}
-        />
+      {/* Row 1 */}
+      <div className="field-row-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+        <div style={fieldWrap}>
+          <label style={labelStyle}>
+            <User size={16} color="#1466DB" />
+            Your Name
+          </label>
+          <input
+            type="text"
+            placeholder="Priya Sharma"
+            required
+            value={fields.name}
+            onChange={set('name')}
+            style={inputStyle('name')}
+            {...fp('name')}
+          />
+        </div>
+        <div style={fieldWrap}>
+          <label style={labelStyle}>
+            <Phone size={16} color="#1466DB" />
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            placeholder="e.g. 98765 43210"
+            required
+            value={fields.phone}
+            onChange={set('phone')}
+            style={inputStyle('phone')}
+            {...fp('phone')}
+          />
+        </div>
       </div>
 
-      {/* Email */}
-      <div style={fieldWrap}>
-        <label style={labelStyle}>
-          <Mail size={16} color="#1466DB" />
-          Work Email
-        </label>
-        <input
-          type="email"
-          placeholder="priya@company.com"
-          value={fields.email}
-          onChange={set('email')}
-          style={inputStyle('email')}
-          {...fp('email')}
-        />
+      {/* Row 2 */}
+      <div className="field-row-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+        <div style={fieldWrap}>
+          <label style={labelStyle}>
+            <Mail size={16} color="#1466DB" />
+            Work Email
+          </label>
+          <input
+            type="email"
+            placeholder="priya@company.com"
+            value={fields.email}
+            onChange={set('email')}
+            style={inputStyle('email')}
+            {...fp('email')}
+          />
+        </div>
+        <div style={fieldWrap}>
+          <label style={labelStyle}>
+            <Layers size={16} color="#1466DB" />
+            Service Type
+          </label>
+          <select
+            value={fields.service}
+            onChange={set('service')}
+            style={{
+              ...inputStyle('service'),
+              appearance: 'none',
+              WebkitAppearance: 'none',
+              backgroundImage: chevronSvg,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 14px center',
+              paddingRight: 40,
+              cursor: 'pointer',
+            }}
+            {...fp('service')}
+          >
+            {services.map((s) => (
+              <option key={s.slug} value={s.title} style={{ background: '#0D1F4A' }}>
+                {s.title}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      {/* Phone */}
-      <div style={fieldWrap}>
-        <label style={labelStyle}>
-          <Phone size={16} color="#1466DB" />
-          Phone Number
-        </label>
-        <input
-          type="tel"
-          placeholder="e.g. 98765 43210"
-          required
-          value={fields.phone}
-          onChange={set('phone')}
-          style={inputStyle('phone')}
-          {...fp('phone')}
-        />
-      </div>
-
-      {/* Service Type */}
-      <div style={fieldWrap}>
-        <label style={labelStyle}>
-          <Layers size={16} color="#1466DB" />
-          Service Type
-        </label>
-        <select
-          value={fields.service}
-          onChange={set('service')}
-          style={{
-            ...inputStyle('service'),
-            appearance: 'none',
-            WebkitAppearance: 'none',
-            backgroundImage: chevronSvg,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'right 14px center',
-            paddingRight: 40,
-            cursor: 'pointer',
-          }}
-          {...fp('service')}
-        >
-          {services.map((s) => (
-            <option key={s.slug} value={s.title} style={{ background: '#0D1F4A' }}>
-              {s.title}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Language Pair */}
+      {/* Row 3 - full width */}
       <div style={fieldWrap}>
         <label style={labelStyle}>
           <Globe size={16} color="#1466DB" />
@@ -242,7 +242,7 @@ export default function QuoteForm() {
         />
       </div>
 
-      {/* Notes */}
+      {/* Row 4 - full width */}
       <div style={fieldWrap}>
         <label style={labelStyle}>
           <FileText size={16} color="#1466DB" />

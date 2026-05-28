@@ -700,3 +700,10 @@ section { overflow-x: hidden; }
     grid-template-columns: repeat(5, 1fr);
   }
 }
+
+/* ─── QuoteForm 2-col mobile collapse ────────────────────────── */
+@media (max-width: 640px) {
+  .field-row-2col {
+    grid-template-columns: 1fr !important;
+  }
+}
