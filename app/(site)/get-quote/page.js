@@ -61,7 +61,7 @@ export default function GetQuotePage() {
 
           {/* Trust badges */}
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            {['ISO 17100 certified', 'NDA by default', 'Reply in 4 hrs', '120+ languages'].map((badge) => (
+            {['Quality-assured', 'NDA by default', 'Reply in 4 hrs', '120+ languages'].map((badge) => (
               <span
                 key={badge}
                 style={{

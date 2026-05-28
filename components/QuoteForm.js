@@ -260,7 +260,7 @@ export default function QuoteForm() {
 
       {/* Trust badges */}
       <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 6 }}>
-        {['🔒 NDA', '⚡ 4hr reply', '✓ ISO certified'].map((badge) => (
+        {['🔒 NDA', '⚡ 4hr reply'].map((badge) => (
           <span
             key={badge}
             style={{

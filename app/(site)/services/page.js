@@ -25,7 +25,7 @@ export default function ServicesPage() {
           Every language service under one roof.
         </h1>
         <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.7, maxWidth: 520 }}>
-          ISO-certified quality across translation, interpretation, voice, media, and publishing — all managed by a dedicated producer.
+          Quality-assured language services across translation, interpretation, voice, media, and publishing — all managed by a dedicated producer.
         </p>
       </div>
 

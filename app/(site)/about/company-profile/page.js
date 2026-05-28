@@ -2,18 +2,17 @@ import Link from 'next/link'
 
 export const metadata = {
   title: 'Company Profile',
-  description: 'Bright Language Solutions — ISO 17100 & 9001 certified language services company. Founded to serve global businesses with precision translation, localisation, and voice services.',
+  description: 'Bright Language Solutions — quality-assured language services company. Founded to serve global businesses with precision translation, localisation, and voice services.',
   openGraph: {
     title: 'Company Profile | Bright Language Solutions',
-    description: 'ISO 17100 & 9001 certified language services company serving 500+ global clients across 120+ languages since 2014.',
+    description: 'Quality-assured language services company serving 500+ global clients across 120+ languages since 2014.',
     type: 'website',
     url: '/about/company-profile',
   },
 }
 
 const CERTIFICATIONS = [
-  { label: 'ISO 17100', desc: 'Translation Services Quality Standard' },
-  { label: 'ISO 9001', desc: 'Quality Management Systems' },
+  { label: 'Quality Assured', desc: 'Rigorous quality management on every project' },
   { label: 'NDA Default', desc: 'Confidentiality on every project' },
 ]
 
@@ -49,7 +48,7 @@ export default function CompanyProfilePage() {
           A language partner built for global business.
         </h1>
         <p style={{ fontSize: 17, color: 'var(--muted-c)', lineHeight: 1.75, maxWidth: 640 }}>
-          Bright Language Solutions was founded on the belief that great language services should be invisible — meaning the output reads, sounds, and feels native without any trace of translation. We combine ISO-certified quality processes with a producer model that keeps every project on track.
+          Bright Language Solutions was founded on the belief that great language services should be invisible — meaning the output reads, sounds, and feels native without any trace of translation. We combine quality-assured processes with a producer model that keeps every project on track.
         </p>
       </div>
 

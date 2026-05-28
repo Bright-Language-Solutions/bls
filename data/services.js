@@ -4,11 +4,11 @@ const services = [
     title: 'Translation Services',
     tagline: 'Precision-crafted translations that read like originals.',
     description:
-      'Our certified translators deliver accurate, culturally nuanced translations across 100+ language pairs. Every project is handled by native-speaking subject-matter experts with ISO 17100 compliance. We cover legal, medical, technical, financial, and general documents.',
+      'Our certified translators deliver accurate, culturally nuanced translations across 100+ language pairs. Every project is handled by native-speaking subject-matter experts. We cover legal, medical, technical, financial, and general documents.',
     icon: 'Languages',
     features: [
       'Native-speaker translators for every language pair',
-      'ISO 17100-certified quality process',
+      'Quality-assured translation process',
       'Subject-matter specialisation (legal, medical, technical)',
       'Certified translations accepted by government bodies',
       'Strict NDA and data-security protocols',

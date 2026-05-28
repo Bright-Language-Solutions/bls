@@ -34,7 +34,7 @@ const industries = [
     servicesOffered: ['translation', 'desktop-publishing', 'typesetting', 'editing-proofreading', 'localization'],
     highlights: [
       'Translation memory reduces cost by up to 30% on repeat content',
-      'ISO 17100-certified process for engineering documentation',
+      'Quality-assured process for engineering documentation',
       'Specialist coverage: aerospace, automotive, software, and energy sectors',
     ],
   },

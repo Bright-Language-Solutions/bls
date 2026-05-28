@@ -496,27 +496,6 @@ export default function Navbar() {
               <Mail size={12} />
               info@brightlanguagesolutions.com
             </a>
-            <span
-              style={{
-                fontSize: 12,
-                color: 'rgba(255,255,255,0.45)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 5,
-              }}
-            >
-              <span
-                style={{
-                  width: 5,
-                  height: 5,
-                  borderRadius: '50%',
-                  background: '#F5B819',
-                  display: 'inline-block',
-                  flexShrink: 0,
-                }}
-              />
-              ISO 17100 · ISO 9001 Certified
-            </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span

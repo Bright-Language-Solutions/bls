@@ -96,23 +96,8 @@ export default function Footer() {
               />
             </Link>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: 20, maxWidth: 220 }}>
-              ISO 17100 &amp; 9001 certified language services in 120+ languages. Engineered by linguists, reviewed by humans.
+              Expert language services in 120+ languages. Engineered by linguists, reviewed by humans.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 20 }}>
-              {['ISO 17100', 'ISO 9001'].map((badge) => (
-                <span
-                  key={badge}
-                  style={{
-                    display: 'inline-block', padding: '4px 10px', borderRadius: 999,
-                    border: '1px solid rgba(255,255,255,0.15)', fontSize: 12,
-                    color: 'rgba(255,255,255,0.6)', fontFamily: 'JetBrains Mono, monospace',
-                    textTransform: 'uppercase', letterSpacing: '0.14em', width: 'fit-content',
-                  }}
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
             <div style={{ display: 'flex', gap: 8 }}>
               {['LinkedIn', 'Twitter', 'Instagram'].map((s) => (
                 <a

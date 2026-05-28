@@ -3,10 +3,10 @@ import { Clock, Shield, Users, MessageSquare, Globe, Star } from 'lucide-react'
 
 export const metadata = {
   title: 'Why Choose Us',
-  description: '6 reasons global teams choose Bright Language Solutions — ISO certification, native linguists, prompt delivery, and single-producer accountability.',
+  description: '6 reasons global teams choose Bright Language Solutions — expert linguists, prompt delivery, single-producer accountability, and global coverage.',
   openGraph: {
     title: 'Why Choose Us | Bright Language Solutions',
-    description: '6 reasons global teams choose Bright Language Solutions — ISO certification, native linguists, prompt delivery, and single-producer accountability.',
+    description: '6 reasons global teams choose Bright Language Solutions — expert linguists, prompt delivery, single-producer accountability, and global coverage.',
     type: 'website',
     url: '/about/why-choose-us',
   },
@@ -27,14 +27,14 @@ const DIFFERENTIATORS = [
   },
   {
     Icon: Shield,
-    title: 'ISO-Certified Quality',
+    title: 'Quality Assured',
     color: '#06184F',
     tint: '#E0E5F3',
     points: [
-      'ISO 17100:2015 certified translation process',
-      'ISO 9001:2015 quality management system',
-      'Every project reviewed by a senior linguist',
-      'Independently audited annual quality reviews',
+      'Rigorous quality management on every project',
+      'Every translation reviewed by a senior linguist',
+      'Style guide and glossary adherence checks',
+      'Independently audited quality reviews',
     ],
   },
   {

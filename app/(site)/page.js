@@ -1,31 +1,26 @@
 import Link from 'next/link'
-import { Clock, Shield, Users, MessageSquare } from 'lucide-react'
+import { Clock, Star, Users, MessageSquare } from 'lucide-react'
 import HeroVisual from '@/components/HeroVisual'
 import ServiceCard from '@/components/ServiceCard'
 import LanguageGrid from '@/components/LanguageGrid'
 import TestimonialCard from '@/components/TestimonialCard'
-import CaseStudyCard from '@/components/CaseStudyCard'
 import QuoteForm from '@/components/QuoteForm'
 import services from '@/data/services'
 import industries from '@/data/industries'
 import languages from '@/data/languages'
 
 export const metadata = {
-  title: 'Bright Language Solutions | ISO-Certified Translation & Localisation',
+  title: 'Bright Language Solutions | Quality-Assured Translation & Localisation',
   description:
-    'ISO-certified translation, localisation, voice-over, and interpretation in 120+ languages. Quote in 4 hours, kickoff in 24.',
+    'Quality-assured translation, localisation, voice-over, and interpretation in 120+ languages. Quote in 4 hours, kickoff in 24.',
   openGraph: {
-    title: 'Bright Language Solutions | ISO-Certified Translation & Localisation',
-    description: 'ISO-certified translation, localisation, voice-over, and interpretation in 120+ languages. Quote in 4 hours, kickoff in 24.',
+    title: 'Bright Language Solutions | Quality-Assured Translation & Localisation',
+    description: 'Quality-assured translation, localisation, voice-over, and interpretation in 120+ languages. Quote in 4 hours, kickoff in 24.',
     type: 'website',
     url: '/',
   },
 }
 
-const CLIENT_LOGOS = [
-  'Lumen OS', 'Vesper Health', 'Studio Aurelia', 'Houseplant', 'Mercato',
-  'Northwind', 'Atlas Mobility', 'Kestrel', 'Junglee', 'Robosoft', 'Pegasystem', 'TVS Motor',
-]
 
 const LANGUAGE_REGIONS = [
   { key: 'indian',     name: 'Indian Languages',     slug: 'indian-languages',     accent: '#F5B819' },
@@ -36,16 +31,11 @@ const LANGUAGE_REGIONS = [
 
 const WHY_CARDS = [
   { Icon: Clock,         title: 'Prompt Delivery',  desc: 'Deadline-driven workflows with milestone tracking on every project.', tint: '#FFF6DA', color: '#D89E0B' },
-  { Icon: Shield,        title: 'ISO-Certified',    desc: 'ISO 17100 & 9001 processes. Every file reviewed, every time.',       tint: '#E0E5F3', color: '#06184F' },
+  { Icon: Star,          title: 'Expert Linguists', desc: 'Every project is handled by native-speaking subject-matter experts — not generalist translators.', tint: '#E0E5F3', color: '#06184F' },
   { Icon: Users,         title: 'Native Linguists', desc: 'Subject-matter experts who live the language, not just speak it.',   tint: '#E8EFFA', color: '#1466DB' },
   { Icon: MessageSquare, title: 'One Producer',     desc: 'A single point of contact who owns your project end-to-end.',        tint: '#DEF5EE', color: '#0E7C66' },
 ]
 
-const CASE_STUDIES = [
-  { tag: 'Gaming · 11 languages', title: 'Shipping a 220k-word RPG on a compressed timeline', metric: '−11 days vs. plan', client: 'Studio Aurelia', slug: null },
-  { tag: 'Medical · EU MDR',      title: 'EU MDR readiness for class-IIb medical device documentation', metric: '100% submission', client: 'Vesper Health', slug: null },
-  { tag: 'E-commerce · DTC',      title: 'PDP localisation for beauty brand entering MENA', metric: '+38% conv. in JP', client: 'Houseplant Beauty', slug: null },
-]
 
 const TESTIMONIALS = [
   { quote: 'Bright became an extension of our editorial team. The producer model cut our coordination overhead by half.', name: 'Mira Okafor',     role: 'Head of Localisation', company: 'Lumen OS' },
@@ -80,7 +70,7 @@ const INDUSTRY_BLURBS = [
 const STEPS = [
   { num: '01', label: 'Brief',   desc: 'Share your documents, scope, and deadline.',              accent: true  },
   { num: '02', label: 'Build',   desc: 'We assemble the right native-specialist team.',            accent: false },
-  { num: '03', label: 'Review',  desc: 'Human QA, proofreading, and ISO compliance checks.',      accent: false },
+  { num: '03', label: 'Review',  desc: 'Human QA and proofreading on every project.',      accent: false },
   { num: '04', label: 'Deliver', desc: 'Files in your format, on time, guaranteed.',              accent: false },
 ]
 
@@ -162,7 +152,7 @@ export default function HomePage() {
               </h1>
 
               <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.75)', lineHeight: 1.7, marginBottom: 32, maxWidth: 480 }}>
-                ISO-certified translation, localisation, voice, and interpretation in 120+ languages — engineered by linguists, reviewed by humans, delivered on time.
+                Quality-assured translation, localisation, voice, and interpretation in 120+ languages — engineered by linguists, reviewed by humans, delivered on time.
               </p>
 
               {/* B1 — CTA buttons: horizontal on desktop, stacked on mobile */}
@@ -255,46 +245,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── CLIENT LOGOS ─── */}
-      {/* A2 + B2 */}
-      <section
-        style={{
-          background: 'var(--bg-2)',
-          borderTop: '1px solid var(--rule)',
-          borderBottom: '1px solid var(--rule)',
-          padding: '48px 0',
-          overflow: 'hidden',
-        }}
-      >
-        <p style={{ textAlign: 'center', fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--muted-c)', marginBottom: 20 }}>
-          Trusted by global teams
-        </p>
-        <div
-          style={{
-            position: 'relative', overflow: 'hidden',
-            maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-          }}
-        >
-          <div style={{ display: 'flex', gap: 48, width: 'max-content', animation: 'marqueeMove 42s linear infinite' }}>
-            {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((name, i) => (
-              <span
-                key={i}
-                style={{
-                  fontFamily: 'Bricolage Grotesque, system-ui',
-                  fontSize: 17,
-                  fontWeight: 600,
-                  color: 'var(--ink-2)',
-                  whiteSpace: 'nowrap',
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ─── WHY US ─── */}
       {/* A3 + B3 */}
@@ -485,12 +435,11 @@ export default function HomePage() {
                 A language partner, not just a vendor.
               </h2>
               <p style={{ fontSize: 15, color: 'var(--muted-c)', lineHeight: 1.75, marginBottom: 24 }}>
-                Bright Language Solutions combines ISO-certified quality processes with a producer model that keeps your projects on track, always. One point of contact. Full accountability.
+                Bright Language Solutions combines quality-assured processes with a producer model that keeps your projects on track, always. One point of contact. Full accountability.
               </p>
               <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
                 {[
                   'Native-speaker translators in every language pair',
-                  'ISO 17100 & 9001 certified quality process',
                   '500+ professional voice artists on roster',
                   '48-country linguist network',
                   'NDA by default on every project',
@@ -709,27 +658,6 @@ export default function HomePage() {
       </div>
       </section>
 
-      {/* ─── CASE STUDIES ─── */}
-      {/* A8 + B10 */}
-      <section style={{ background: 'var(--section-alt)', padding: '80px 24px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--blue)', marginBottom: 12 }}>
-            04 · Selected work
-          </p>
-          <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 40 }}>
-            Projects that moved markets.
-          </h2>
-          {/* B10 — 1-col mobile, 3-col lg */}
-          <div className="case-grid">
-            {CASE_STUDIES.map((cs) => (
-              <CaseStudyCard key={cs.tag} {...cs} />
-            ))}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: 40 }}>
-            <Link href="/case-studies" className="btn ghost">View all case studies →</Link>
-          </div>
-        </div>
-      </section>
 
       {/* ─── TESTIMONIALS ─── */}
       {/* A9 + B11 */}
@@ -871,7 +799,7 @@ export default function HomePage() {
             <div>
               {/* A10 — Trust badges above form */}
               <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
-                {['🔒 NDA', '⚡ 4hr reply', '✓ ISO certified'].map((badge) => (
+                {['🔒 NDA', '⚡ 4hr reply'].map((badge) => (
                   <span
                     key={badge}
                     style={{

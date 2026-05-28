@@ -2,10 +2,10 @@ import Link from 'next/link'
 
 export const metadata = {
   title: 'About Us',
-  description: 'ISO 17100-certified language partner with a 48-country linguist network. One producer, full accountability, on every project.',
+  description: 'Expert language partner with a 48-country linguist network. One producer, full accountability, on every project.',
   openGraph: {
     title: 'About Us | Bright Language Solutions',
-    description: 'ISO 17100-certified language partner with a 48-country linguist network. One producer, full accountability, on every project.',
+    description: 'Expert language partner with a 48-country linguist network. One producer, full accountability, on every project.',
     type: 'website',
     url: '/about',
   },
@@ -24,7 +24,7 @@ export default function AboutPage() {
             Built to bridge language gaps — at scale.
           </h1>
           <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', maxWidth: 540, lineHeight: 1.65 }}>
-            Bright Language Solutions is an ISO-certified language services company delivering translation, interpretation, voice, and media services in 120+ languages.
+            Bright Language Solutions is a quality-assured language services company delivering translation, interpretation, voice, and media services in 120+ languages.
           </p>
         </div>
       </section>
@@ -40,7 +40,7 @@ export default function AboutPage() {
               We believe that language should never be a barrier to doing business globally. Our mission is to help organisations communicate with clarity and confidence in every market they serve.
             </p>
             <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.8 }}>
-              Every project at Bright is handled by a dedicated producer — one point of contact, full accountability, and an ISO-certified quality process from brief to delivery.
+              Every project at Bright is handled by a dedicated producer — one point of contact, full accountability, and a quality-assured process from brief to delivery.
             </p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -50,7 +50,6 @@ export default function AboutPage() {
               { label: 'Projects delivered', value: '3,000+' },
               { label: 'Words translated', value: '1.4B+' },
               { label: 'Countries served', value: '48' },
-              { label: 'ISO certifications', value: '17100 & 9001' },
             ].map(({ label, value }) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', borderBottom: '1px solid var(--rule)' }}>
                 <span style={{ fontSize: 15, color: 'var(--muted-c)' }}>{label}</span>
@@ -61,30 +60,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ISO certs */}
-      <section style={{ background: 'var(--tint)', padding: '64px 24px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 28, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 40, textAlign: 'center' }}>
-            Certified quality, independently verified.
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24 }}>
-            {[
-              { cert: 'ISO 17100:2015', title: 'Translation Services', desc: 'Defines requirements for the core processes, resources, and quality assurance of translation services.' },
-              { cert: 'ISO 9001:2015', title: 'Quality Management', desc: 'International standard for quality management systems. Demonstrates consistent service quality to clients.' },
-            ].map(({ cert, title, desc }) => (
-              <div key={cert} className="bls-card" style={{ padding: 28 }}>
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--blue)', marginBottom: 12, display: 'block' }}>
-                  {cert}
-                </span>
-                <h3 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 20, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 10 }}>
-                  {title}
-                </h3>
-                <p style={{ fontSize: 14, color: 'var(--muted-c)', lineHeight: 1.7, margin: 0 }}>{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Team placeholder */}
       <section style={{ maxWidth: 1200, margin: '0 auto', padding: '72px 24px', textAlign: 'center' }}>
