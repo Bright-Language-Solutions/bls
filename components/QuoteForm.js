@@ -74,10 +74,10 @@ export default function QuoteForm() {
 
   const inputStyle = (name) => ({
     width: '100%',
-    padding: '14px 16px',
+    padding: '10px 14px',
     borderRadius: 10,
     border: `1.5px solid ${focused === name ? '#1466DB' : '#1F2D55'}`,
-    fontSize: 15,
+    fontSize: 14,
     color: '#F4F7FE',
     background: '#0B1A3D',
     outline: 'none',
@@ -104,7 +104,7 @@ export default function QuoteForm() {
     marginBottom: 6,
   }
 
-  const fieldWrap = { display: 'flex', flexDirection: 'column', marginBottom: 16 }
+  const fieldWrap = { display: 'flex', flexDirection: 'column', marginBottom: 10 }
 
   return (
     <form
@@ -114,15 +114,15 @@ export default function QuoteForm() {
         background: '#0D1F4A',
         border: '1px solid #1F2D55',
         borderRadius: 24,
-        padding: '36px 32px',
+        padding: '24px 28px',
         boxShadow: '0 32px 80px -16px rgba(0,0,0,0.5)',
         display: 'flex',
         flexDirection: 'column',
       }}
     >
       {/* Header */}
-      <div style={{ marginBottom: 28 }}>
-        <h2 style={{ fontSize: 24, fontWeight: 700, color: '#ffffff', margin: '0 0 6px' }}>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', margin: '0 0 6px' }}>
           Get a Free Quote
         </h2>
         <p style={{ fontSize: 14, color: '#95A0BD', margin: 0 }}>
@@ -259,7 +259,7 @@ export default function QuoteForm() {
       </div>
 
       {/* Trust badges */}
-      <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 8 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 6 }}>
         {['🔒 NDA', '⚡ 4hr reply', '✓ ISO certified'].map((badge) => (
           <span
             key={badge}
@@ -284,9 +284,9 @@ export default function QuoteForm() {
         style={{
           background: 'linear-gradient(135deg, #F5B819, #D89E0B)',
           color: '#06184F',
-          fontSize: 17,
+          fontSize: 15,
           fontWeight: 800,
-          padding: '17px 24px',
+          padding: '13px 24px',
           borderRadius: 999,
           width: '100%',
           border: 'none',
@@ -313,7 +313,7 @@ export default function QuoteForm() {
       </button>
 
       {/* Footer note */}
-      <p style={{ fontSize: 12, color: '#3D4F6E', textAlign: 'center', margin: '10px 0 0' }}>
+      <p style={{ fontSize: 12, color: '#3D4F6E', textAlign: 'center', margin: '8px 0 0' }}>
         We never train on your content.
       </p>
     </form>
