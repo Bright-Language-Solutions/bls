@@ -4,10 +4,10 @@ import languages from '@/data/languages'
 
 export const metadata = {
   title: 'Languages',
-  description: 'Translation and localisation in 120+ languages — Indian, European, Asian, and Middle East language coverage by certified native-speaker experts.',
+  description: 'Translation and localisation in 150+ languages — Indian, European, Asian, and Middle East language coverage by certified native-speaker experts.',
   openGraph: {
     title: 'Languages | Bright Language Solutions',
-    description: 'Translation and localisation in 120+ languages — Indian, European, Asian, and Middle East language coverage by certified native-speaker experts.',
+    description: 'Translation and localisation in 150+ languages — Indian, European, Asian, and Middle East language coverage by certified native-speaker experts.',
     type: 'website',
     url: '/languages',
   },
@@ -28,7 +28,7 @@ export default function LanguagesPage() {
         Languages
       </p>
       <h1 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.03em', marginBottom: 16, maxWidth: 520 }}>
-        120+ languages, organised your way.
+        150+ languages, organised your way.
       </h1>
       <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.7, maxWidth: 520, marginBottom: 56 }}>
         Native-speaker translators and interpreters in every region. Browse by language family or search for your pair.

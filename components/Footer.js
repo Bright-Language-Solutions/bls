@@ -96,7 +96,7 @@ export default function Footer() {
               />
             </Link>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: 20, maxWidth: 220 }}>
-              Expert language services in 120+ languages. Engineered by linguists, reviewed by humans.
+              Expert language services in 150+ languages. Engineered by linguists, reviewed by humans.
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
               {['LinkedIn', 'Twitter', 'Instagram'].map((s) => (

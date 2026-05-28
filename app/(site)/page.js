@@ -12,10 +12,10 @@ import languages from '@/data/languages'
 export const metadata = {
   title: 'Bright Language Solutions | Quality-Assured Translation & Localisation',
   description:
-    'Quality-assured translation, localisation, voice-over, and interpretation in 120+ languages. Quote in 4 hours, kickoff in 24.',
+    'Quality-assured translation, localisation, voice-over, and interpretation in 150+ languages. Quote in 4 hours, kickoff in 24.',
   openGraph: {
     title: 'Bright Language Solutions | Quality-Assured Translation & Localisation',
-    description: 'Quality-assured translation, localisation, voice-over, and interpretation in 120+ languages. Quote in 4 hours, kickoff in 24.',
+    description: 'Quality-assured translation, localisation, voice-over, and interpretation in 150+ languages. Quote in 4 hours, kickoff in 24.',
     type: 'website',
     url: '/',
   },
@@ -32,7 +32,7 @@ const LANGUAGE_REGIONS = [
 const WHY_CARDS = [
   { Icon: Clock,         title: 'Prompt Delivery',  stat: '< 4 hrs turnaround',  accentColor: '#F5B819', desc: 'Deadline-driven workflows with milestone tracking on every project.', tint: '#FFF6DA', color: '#D89E0B' },
   { Icon: Star,          title: 'Expert Linguists', stat: 'Native speakers only', accentColor: '#1466DB', desc: 'Every project is handled by native-speaking subject-matter experts — not generalist translators.', tint: '#E0E5F3', color: '#06184F' },
-  { Icon: Users,         title: 'Native Linguists', stat: '120+ languages',       accentColor: '#1466DB', desc: 'Subject-matter experts who live the language, not just speak it.',   tint: '#E8EFFA', color: '#1466DB' },
+  { Icon: Users,         title: 'Native Linguists', stat: '150+ languages',       accentColor: '#1466DB', desc: 'Subject-matter experts who live the language, not just speak it.',   tint: '#E8EFFA', color: '#1466DB' },
   { Icon: MessageSquare, title: 'One Producer',     stat: '1 point of contact',   accentColor: '#10B981', desc: 'A single point of contact who owns your project end-to-end.',        tint: '#DEF5EE', color: '#0E7C66' },
 ]
 
@@ -161,7 +161,7 @@ export default function HomePage() {
               </h1>
 
               <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.75)', lineHeight: 1.7, marginBottom: 32, maxWidth: 480 }}>
-                Quality-assured translation, localisation, voice, and interpretation in 120+ languages — engineered by linguists, reviewed by humans, delivered on time.
+                Quality-assured translation, localisation, voice, and interpretation in 150+ languages — engineered by linguists, reviewed by humans, delivered on time.
               </p>
 
               {/* B1 — CTA buttons: horizontal on desktop, stacked on mobile */}
@@ -176,7 +176,7 @@ export default function HomePage() {
 
               {/* B1 — Trust stats: flex on desktop, 3-col grid on mobile */}
               <div className="hero-stats">
-                {[['1.4B+', 'words delivered'], ['120+', 'languages'], ['500+', 'global clients']].map(([num, lbl]) => (
+                {[['1.4B+', 'words delivered'], ['150+', 'languages'], ['500+', 'global clients']].map(([num, lbl]) => (
                   <div key={lbl}>
                     <p style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 28, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em', margin: 0 }}>{num}</p>
                     <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', margin: 0 }}>{lbl}</p>
@@ -489,7 +489,7 @@ export default function HomePage() {
             02 · Languages
           </p>
           <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 48 }}>
-            120+ languages, organised your way.
+            150+ languages, organised your way.
           </h2>
           {/* B6 — 1-col mobile, 2-col md, 4-col xl */}
           <div className="lang-grid">
@@ -602,7 +602,7 @@ export default function HomePage() {
           <div className="stats-grid">
             {[
               { num: '1.4B', label: 'words delivered',   sub: 'since 2014' },
-              { num: '120+', label: 'languages',         sub: 'covered in-house' },
+              { num: '150+', label: 'languages',         sub: 'covered in-house' },
               { num: '48',   label: 'countries',         sub: 'linguist presence' },
               { num: '98.7%',label: 'on-time delivery',  sub: 'all projects' },
             ].map(({ num, label, sub }) => (

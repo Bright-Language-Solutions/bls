@@ -24,7 +24,7 @@ export default function AboutPage() {
             Built to bridge language gaps — at scale.
           </h1>
           <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', maxWidth: 540, lineHeight: 1.65 }}>
-            Bright Language Solutions is a quality-assured language services company delivering translation, interpretation, voice, and media services in 120+ languages.
+            Bright Language Solutions is a quality-assured language services company delivering translation, interpretation, voice, and media services in 150+ languages.
           </p>
         </div>
       </section>
@@ -46,7 +46,7 @@ export default function AboutPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             {[
               { label: 'Founded', value: '2014' },
-              { label: 'Languages covered', value: '120+' },
+              { label: 'Languages covered', value: '150+' },
               { label: 'Projects delivered', value: '3,000+' },
               { label: 'Words translated', value: '1.4B+' },
               { label: 'Countries served', value: '48' },
