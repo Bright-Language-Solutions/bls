@@ -731,6 +731,20 @@ html[data-theme="dark"] .bg-soft,
 .dark .bg-soft {
   background: var(--bg);
 }
+.bg-testimonials {
+  background: linear-gradient(135deg, #06184F 0%, #0A2468 100%);
+}
+html[data-theme="dark"] .bg-testimonials,
+.dark .bg-testimonials {
+  background: var(--tint);
+}
+.bg-about {
+  background: linear-gradient(135deg, #06184F 0%, #0D3080 100%);
+}
+html[data-theme="dark"] .bg-about,
+.dark .bg-about {
+  background: var(--tint);
+}
 .hero-wave path {
   fill: #EEF4FF;
 }

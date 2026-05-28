@@ -368,8 +368,13 @@ export default function HomePage() {
 
       {/* ─── ABOUT SPLIT ─── */}
       {/* A5 + B5 */}
-      <section style={{ padding: '80px 24px', background: 'var(--bg)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+      <section className="bg-about" style={{ padding: '80px 24px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+        }} />
+        <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
           {/* B5 — 1-col mobile, 2-col desktop */}
           <div className="about-grid">
             {/* Left — visual card */}
@@ -378,9 +383,9 @@ export default function HomePage() {
                 style={{
                   position: 'absolute',
                   width: '90%', height: '85%',
-                  background: 'var(--tint)',
+                  background: 'rgba(255,255,255,0.08)',
                   borderRadius: 20,
-                  border: '1px solid var(--rule)',
+                  border: '1px solid rgba(255,255,255,0.12)',
                   transform: 'rotate(-3deg) translateY(16px)',
                   left: '5%', top: 0,
                 }}
@@ -390,56 +395,56 @@ export default function HomePage() {
                 className="about-main-card"
                 style={{
                   position: 'relative',
-                  background: 'var(--card-bg)',
-                  border: '1px solid var(--card-border)',
+                  background: '#ffffff',
+                  border: '1px solid #E2E6EE',
                   borderRadius: 20,
                   padding: 28,
                   width: '90%',
-                  boxShadow: '0 20px 60px -12px rgba(6,24,79,.14)',
+                  boxShadow: '0 24px 80px rgba(0,0,0,0.3)',
                   transition: 'border-color 0.2s, box-shadow 0.2s',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: 'var(--muted-c)', textTransform: 'uppercase', letterSpacing: '0.14em' }}>BR-7741</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: '#5A6577', textTransform: 'uppercase', letterSpacing: '0.14em' }}>BR-7741</span>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: '#10B981', textTransform: 'uppercase', letterSpacing: '0.14em' }}>On track</span>
                 </div>
-                <h4 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 18, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 6 }}>
+                <h4 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 18, fontWeight: 600, color: '#06184F', letterSpacing: '-0.02em', marginBottom: 6 }}>
                   Beauty brand · MENA launch
                 </h4>
-                <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: 'var(--muted-c)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 20 }}>
+                <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: '#5A6577', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 20 }}>
                   EN → AR, FA, TR · 38,400 words
                 </p>
                 {/* Progress bars — B5: hide last 2 on mobile */}
                 {[
-                  { lang: 'Arabic',  pct: 92, color: 'var(--navy)' },
-                  { lang: 'Persian', pct: 78, color: 'var(--blue)' },
-                  { lang: 'Turkish', pct: 66, color: 'var(--yellow)', extra: true },
-                  { lang: 'Hebrew',  pct: 41, color: '#0E7C66',      extra: true },
+                  { lang: 'Arabic',  pct: 92, color: '#06184F' },
+                  { lang: 'Persian', pct: 78, color: '#1466DB' },
+                  { lang: 'Turkish', pct: 66, color: '#F5B819', extra: true },
+                  { lang: 'Hebrew',  pct: 41, color: '#0E7C66', extra: true },
                 ].map(({ lang, pct, color, extra }) => (
                   <div key={lang} className={extra ? 'about-progress-extra' : ''} style={{ marginBottom: 12 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                      <span style={{ fontSize: 13, color: 'var(--ink)', fontWeight: 500 }}>{lang}</span>
-                      <span style={{ fontSize: 13, color: 'var(--muted-c)' }}>{pct}%</span>
+                      <span style={{ fontSize: 13, color: '#06184F', fontWeight: 500 }}>{lang}</span>
+                      <span style={{ fontSize: 13, color: '#5A6577' }}>{pct}%</span>
                     </div>
-                    <div style={{ height: 6, background: 'var(--tint-2)', borderRadius: 999 }}>
+                    <div style={{ height: 6, background: '#E2E6EE', borderRadius: 999 }}>
                       <div style={{ height: '100%', width: `${pct}%`, background: color, borderRadius: 999 }} />
                     </div>
                   </div>
                 ))}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--rule)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 20, paddingTop: 16, borderTop: '1px solid #E2E6EE' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <div style={{ display: 'flex' }}>
                       {['AS','MK','JR','NV'].map((init, i) => (
-                        <div key={init} style={{ width: 28, height: 28, borderRadius: '50%', background: 'var(--navy)', border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: i > 0 ? -8 : 0 }}>
+                        <div key={init} style={{ width: 28, height: 28, borderRadius: '50%', background: '#06184F', border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: i > 0 ? -8 : 0 }}>
                           <span style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 9, fontWeight: 700, color: '#fff' }}>{init}</span>
                         </div>
                       ))}
                     </div>
-                    <span style={{ fontSize: 12, color: 'var(--muted-c)' }}>4 linguists · 1 producer</span>
+                    <span style={{ fontSize: 12, color: '#5A6577' }}>4 linguists · 1 producer</span>
                   </div>
-                  <div style={{ background: 'var(--yellow)', padding: '6px 12px', borderRadius: 10, textAlign: 'center' }}>
-                    <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--navy)', margin: 0 }}>QUOTE IN</p>
-                    <p style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 18, fontWeight: 700, color: 'var(--navy)', margin: 0 }}>4 hrs</p>
+                  <div style={{ background: '#F5B819', padding: '6px 12px', borderRadius: 10, textAlign: 'center' }}>
+                    <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#06184F', margin: 0 }}>QUOTE IN</p>
+                    <p style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 18, fontWeight: 700, color: '#06184F', margin: 0 }}>4 hrs</p>
                   </div>
                 </div>
               </div>
@@ -450,13 +455,13 @@ export default function HomePage() {
               {/* A5 — Yellow accent line above kicker */}
               <div style={{ width: 48, height: 3, background: '#F5B819', marginBottom: 16, borderRadius: 2 }} />
 
-              <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--blue)', marginBottom: 12 }}>
+              <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.6)', marginBottom: 12 }}>
                 About Bright
               </p>
-              <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 20 }}>
+              <h2 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 600, color: '#ffffff', letterSpacing: '-0.02em', marginBottom: 20 }}>
                 A language partner, not just a vendor.
               </h2>
-              <p style={{ fontSize: 15, color: 'var(--muted-c)', lineHeight: 1.75, marginBottom: 24 }}>
+              <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', lineHeight: 1.75, marginBottom: 24 }}>
                 Bright Language Solutions combines quality-assured processes with a producer model that keeps your projects on track, always. One point of contact. Full accountability.
               </p>
               <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
@@ -467,10 +472,10 @@ export default function HomePage() {
                   'NDA by default on every project',
                   'Dedicated producer for every account',
                 ].map((item) => (
-                  <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15, color: 'var(--ink)' }}>
+                  <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15, color: 'rgba(255,255,255,0.85)' }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-                      <circle cx="12" cy="12" r="10" fill="var(--blue)" opacity="0.12" />
-                      <polyline points="8 12 11 15 16 9" stroke="var(--blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="12" cy="12" r="10" fill="#F5B819" opacity="0.2" />
+                      <polyline points="8 12 11 15 16 9" stroke="#F5B819" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     {item}
                   </li>
@@ -478,18 +483,18 @@ export default function HomePage() {
               </ul>
 
               {/* A5 — Extra trust stats */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 32, padding: '16px 0', borderTop: '1px solid var(--rule)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 32, padding: '16px 0', borderTop: '1px solid rgba(255,255,255,0.15)' }}>
                 {['₹0 upfront · Pay on delivery', 'Dedicated Slack channel for every project'].map((stat) => (
-                  <div key={stat} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: 'var(--muted-c)' }}>
-                    <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--yellow)', display: 'inline-block', flexShrink: 0 }} />
+                  <div key={stat} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: 'rgba(255,255,255,0.7)' }}>
+                    <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F5B819', display: 'inline-block', flexShrink: 0 }} />
                     {stat}
                   </div>
                 ))}
               </div>
 
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                <Link href="/about" className="btn primary">Learn about us</Link>
-                <Link href="/case-studies" className="btn ghost">See case studies</Link>
+                <Link href="/about" className="btn primary" style={{ background: '#ffffff', color: '#06184F', fontWeight: 700, borderColor: '#ffffff' }}>Learn about us</Link>
+                <Link href="/case-studies" className="btn ghost" style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.3)', color: '#ffffff' }}>See case studies</Link>
               </div>
             </div>
           </div>
@@ -683,10 +688,15 @@ export default function HomePage() {
 
       {/* ─── TESTIMONIALS ─── */}
       {/* A9 + B11 */}
-      <section className="bg-soft" style={{ padding: '80px 24px' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+      <section className="bg-testimonials" style={{ padding: '80px 24px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
+        backgroundSize: '24px 24px',
+      }} />
+      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--blue)', marginBottom: 12 }}>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#ffffff', marginBottom: 12 }}>
             05 · Testimonials
           </p>
           {/* A9 — Prominent rating display */}
@@ -699,10 +709,10 @@ export default function HomePage() {
               ))}
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-              <span style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 48, fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.03em', lineHeight: 1 }}>4.9</span>
-              <span style={{ fontSize: 24, color: 'var(--muted-c)', fontWeight: 500 }}>/ 5.0</span>
+              <span style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 48, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.03em', lineHeight: 1 }}>4.9</span>
+              <span style={{ fontSize: 24, color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>/ 5.0</span>
             </div>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, color: 'var(--muted-c)', textTransform: 'uppercase', letterSpacing: '0.12em', margin: 0 }}>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.12em', margin: 0 }}>
               Based on 240+ verified reviews
             </p>
           </div>
@@ -718,7 +728,7 @@ export default function HomePage() {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 32 }}>
-          <Link href="/testimonials" className="btn ghost" style={{ display: 'inline-flex' }}>
+          <Link href="/testimonials" className="btn ghost" style={{ display: 'inline-flex', borderColor: 'rgba(255,255,255,0.3)', color: '#ffffff' }}>
             Read all reviews →
           </Link>
         </div>
