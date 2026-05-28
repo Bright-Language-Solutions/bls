@@ -668,3 +668,35 @@ section { overflow-x: hidden; }
     padding: 64px 24px;
   }
 }
+
+/* ─── Hero CTA row ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hero-cta-row {
+    flex-direction: column !important;
+  }
+  .hero-cta-row a {
+    width: 100% !important;
+    justify-content: center !important;
+    font-size: 16px !important;
+    padding: 14px 24px !important;
+  }
+}
+
+/* ─── Locations region grid ───────────────────────────────────── */
+.locations-region-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .locations-region-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .locations-region-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

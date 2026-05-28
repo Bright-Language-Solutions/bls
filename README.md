@@ -165,4 +165,4 @@ All 13 tests must pass.
 | **Company** | Bright Language Solutions |
 | **Address** | Plot No. 153, 1st Floor, Block-D1, Mansa Ram Park, Uttam Nagar, New Delhi - 110059 |
 | **Phone / WhatsApp** | +91 83684 40255 |
-| **Email** | hello@brightlanguage.in |
+| **Email** | info@brightlanguagesolutions.com |

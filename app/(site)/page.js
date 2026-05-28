@@ -54,16 +54,16 @@ const TESTIMONIALS = [
 ]
 
 const LOCATIONS = [
-  { city: 'Mumbai',    type: 'Production hub' },
-  { city: 'Bengaluru', type: 'Production hub' },
-  { city: 'New Delhi', type: 'Linguist network' },
-  { city: 'London',    type: 'Production hub' },
-  { city: 'Berlin',    type: 'Linguist network' },
-  { city: 'Dubai',     type: 'Linguist network' },
-  { city: 'Singapore', type: 'Linguist network' },
-  { city: 'Tokyo',     type: 'Linguist network' },
-  { city: 'New York',  type: 'Linguist network' },
-  { city: 'Toronto',   type: 'Linguist network' },
+  { city: 'Uttam Nagar',       type: 'HQ',             isHQ: true },
+  { city: 'Connaught Place',   type: 'Production hub' },
+  { city: 'Hauz Khas',         type: 'Production hub' },
+  { city: 'Dwarka',            type: 'Production hub' },
+  { city: 'Rohini',            type: 'Production hub' },
+  { city: 'Saket',             type: 'Production hub' },
+  { city: 'Laxmi Nagar',       type: 'Production hub' },
+  { city: 'Noida Sector 18',   type: 'Production hub' },
+  { city: 'Gurgaon Cyber City', type: 'Production hub' },
+  { city: 'Greater Noida',     type: 'Production hub' },
 ]
 
 const INDUSTRY_EMOJIS = ['⚖️', '🏥', '⚙️', '🛒', '🎮', '🎓', '📺']
@@ -165,12 +165,13 @@ export default function HomePage() {
                 ISO-certified translation, localisation, voice, and interpretation in 120+ languages — engineered by linguists, reviewed by humans, delivered on time.
               </p>
 
-              {/* B1 — CTA buttons: full-width stacked on mobile */}
-              <div className="hero-cta">
-                <Link href="/get-quote" className="btn accent">Get a Free Quote →</Link>
-                <Link href="/services" className="btn ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, border: '1px solid rgba(255,255,255,0.3)', color: '#ffffff', background: 'rgba(255,255,255,0.08)' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff"><polygon points="5 3 19 12 5 21 5 3" /></svg>
-                  Browse Services
+              {/* B1 — CTA buttons: horizontal on desktop, stacked on mobile */}
+              <div className="hero-cta-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 32 }}>
+                <Link href="/get-quote" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#F5B819', color: '#06184F', fontWeight: 700, fontSize: 15, padding: '12px 24px', borderRadius: 999, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                  Get a Free Quote →
+                </Link>
+                <Link href="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.12)', color: '#ffffff', fontWeight: 600, fontSize: 15, padding: '12px 24px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.25)', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                  ▶ Browse Services
                 </Link>
               </div>
 
@@ -786,19 +787,19 @@ export default function HomePage() {
           </h2>
           {/* B12 — 2-col mobile, auto-fill desktop */}
           <div className="locations-grid">
-            {LOCATIONS.map(({ city, type }) => (
+            {LOCATIONS.map(({ city, type, isHQ }) => (
               <div key={city} className="bls-card" style={{ padding: '20px 18px' }}>
                 <span
                   style={{
                     display: 'inline-block',
                     fontFamily: 'JetBrains Mono, monospace',
                     fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.14em',
-                    color: type === 'Production hub' ? 'var(--blue)' : 'var(--yellow-2)',
-                    background: type === 'Production hub' ? 'var(--tint-2)' : '#FFF6DA',
+                    color: isHQ ? '#06184F' : type === 'Production hub' ? 'var(--blue)' : 'var(--yellow-2)',
+                    background: isHQ ? '#F5B819' : type === 'Production hub' ? 'var(--tint-2)' : '#FFF6DA',
                     padding: '3px 8px', borderRadius: 999, marginBottom: 10,
                   }}
                 >
-                  {type}
+                  {isHQ ? 'HQ' : type}
                 </span>
                 <p style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 16, fontWeight: 600, color: 'var(--ink)', margin: 0, letterSpacing: '-0.01em' }}>
                   {city}
@@ -851,9 +852,9 @@ export default function HomePage() {
               {/* A10 — Trust signals with left border */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
                 {[
-                  { label: 'Email', value: 'hello@brightlanguage.in' },
+                  { label: 'Email', value: 'info@brightlanguagesolutions.com' },
                   { label: 'Phone', value: '+91 83684 40255' },
-                  { label: 'HQ',    value: 'New Delhi · India' },
+                  { label: 'HQ',    value: 'Plot No. 153, 1st Floor, Block-D1, Mansa Ram Park, Uttam Nagar, New Delhi-110059' },
                   { label: 'Hours', value: '24/7 producer cover' },
                 ].map(({ label, value }) => (
                   <div key={label} style={{ borderLeft: '2px solid rgba(255,255,255,0.2)', paddingLeft: 16 }}>

@@ -39,7 +39,7 @@ export default function ContactPage() {
         <div style={{ width: '100%', minWidth: 0 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 28, marginBottom: 40 }}>
             {[
-              { label: 'Email', value: 'hello@brightlanguage.in', href: 'mailto:hello@brightlanguage.in' },
+              { label: 'Email', value: 'info@brightlanguagesolutions.com', href: 'mailto:info@brightlanguagesolutions.com' },
               { label: 'Phone', value: '+91 83684 40255', href: 'tel:+918368440255' },
               { label: 'WhatsApp', value: '+91 83684 40255', href: 'https://api.whatsapp.com/send?phone=918368440255&text=Hello%20Bright%20Language%20Solutions' },
               { label: 'Address (HQ)', value: 'Plot No. 153, 1st Floor, Block-D1, Mansa Ram Park, Uttam Nagar, New Delhi - 110059' },
@@ -62,7 +62,7 @@ export default function ContactPage() {
         {/* Contact form */}
         <div style={{ width: '100%', minWidth: 0 }}>
           <form
-            action={`mailto:hello@brightlanguage.in`}
+            action={`mailto:info@brightlanguagesolutions.com`}
             method="get"
             encType="text/plain"
             style={{ display: 'flex', flexDirection: 'column', gap: 16 }}

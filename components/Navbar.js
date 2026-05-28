@@ -484,7 +484,7 @@ export default function Navbar() {
               +91 83684 40255
             </a>
             <a
-              href="mailto:hello@brightlanguage.in"
+              href="mailto:info@brightlanguagesolutions.com"
               style={{
                 color: 'rgba(255,255,255,0.85)',
                 textDecoration: 'none',
@@ -494,7 +494,7 @@ export default function Navbar() {
               }}
             >
               <Mail size={12} />
-              hello@brightlanguage.in
+              info@brightlanguagesolutions.com
             </a>
             <span
               style={{

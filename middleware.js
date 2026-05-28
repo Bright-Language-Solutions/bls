@@ -1,4 +1,4 @@
-// Polite Packers — admin auth middleware.
+// Bright Language Solutions — admin auth middleware.
 // Any request to /admin or /admin/* (except /admin/login) must carry a
 // cookie `admin_session` whose value equals process.env.ADMIN_SECRET.
 // Otherwise we redirect to /admin/login.

@@ -51,7 +51,7 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        // Polite Packers brand tokens (locked for all phases)
+        // Bright Language Solutions brand tokens
         brand: {
           navy: '#001F3F',
           'navy-700': '#052C55',
