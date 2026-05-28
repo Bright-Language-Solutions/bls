@@ -11,15 +11,15 @@ const ICON_MAP = {
 
 const SERVICE_COLORS = {
   translation:              '#1466DB',
-  interpretation:           '#10B981',
-  'voice-over':             '#F5B819',
-  dubbing:                  '#8B5CF6',
-  'subtitling-captioning':  '#0E7C66',
-  localization:             '#1466DB',
-  transcription:            '#06184F',
-  'desktop-publishing':     '#D89E0B',
-  'editing-proofreading':   '#10B981',
-  typesetting:              '#0E51B4',
+  interpretation:           '#7C3AED',
+  'voice-over':             '#EA580C',
+  dubbing:                  '#DC2626',
+  'subtitling-captioning':  '#0891B2',
+  localization:             '#059669',
+  transcription:            '#D97706',
+  'desktop-publishing':     '#BE185D',
+  'editing-proofreading':   '#4F46E5',
+  typesetting:              '#0F766E',
 }
 
 export default function ServiceCard({ service, featured = false, className = '' }) {
@@ -29,7 +29,7 @@ export default function ServiceCard({ service, featured = false, className = '' 
   if (featured) {
     return (
       <div
-        className={`relative overflow-hidden rounded-2xl p-8 flex flex-col justify-between ${className}`}
+        className={`service-card-featured relative overflow-hidden rounded-2xl p-8 flex flex-col justify-between ${className}`}
         style={{ background: '#06184F', color: '#fff', minHeight: 280 }}
       >
         {/* Decorative orbit rings */}
@@ -91,7 +91,7 @@ export default function ServiceCard({ service, featured = false, className = '' 
 
   return (
     <div
-      className={`bls-card flex flex-col justify-between overflow-hidden ${className}`}
+      className={`bls-card service-card flex flex-col justify-between overflow-hidden ${className}`}
       style={{ minHeight: 200 }}
     >
       {/* Top accent bar */}
@@ -102,7 +102,7 @@ export default function ServiceCard({ service, featured = false, className = '' 
           <div
             style={{
               width: 52, height: 52, borderRadius: 12,
-              background: color + '14',
+              background: color + '15',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: 16,
             }}

@@ -481,8 +481,9 @@ section { overflow-x: hidden; }
   top: 32px;
   left: calc(12.5% + 16px);
   right: calc(12.5% + 16px);
-  height: 2px;
-  border-top: 2px dashed var(--rule);
+  height: 3px;
+  background: linear-gradient(90deg, #06184F, #1466DB, #F5B819);
+  border-radius: 999px;
   z-index: 0;
 }
 
@@ -705,5 +706,66 @@ section { overflow-x: hidden; }
 @media (max-width: 640px) {
   .field-row-2col {
     grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─── Dark-mode aware section backgrounds ─────────────────── */
+.bg-whyus {
+  background: linear-gradient(180deg, #EEF4FF 0%, #ffffff 100%);
+}
+html[data-theme="dark"] .bg-whyus,
+.dark .bg-whyus {
+  background: var(--tint);
+}
+.bg-lightblue {
+  background: #F3F6FC;
+}
+html[data-theme="dark"] .bg-lightblue,
+.dark .bg-lightblue {
+  background: var(--tint);
+}
+.bg-soft {
+  background: #FAFBFF;
+}
+html[data-theme="dark"] .bg-soft,
+.dark .bg-soft {
+  background: var(--bg);
+}
+.hero-wave path {
+  fill: #EEF4FF;
+}
+html[data-theme="dark"] .hero-wave path,
+.dark .hero-wave path {
+  fill: #0B1A3D;
+}
+
+/* ─── Card hover effects ─────────────────────────────────────── */
+.why-card { transition: all 0.2s ease; }
+.why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(6,24,79,0.10);
+}
+.service-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.service-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(6,24,79,0.12);
+}
+.service-card-featured { transition: box-shadow 0.2s ease; }
+.service-card-featured:hover {
+  box-shadow: 0 20px 60px rgba(6,24,79,0.25);
+}
+.location-card { transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
+.location-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(6,24,79,0.10);
+}
+
+@media (max-width: 768px) {
+  .why-card:hover,
+  .service-card:hover,
+  .service-card-featured:hover,
+  .location-card:hover {
+    transform: none;
+    box-shadow: none;
   }
 }

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Clock, Star, Users, MessageSquare } from 'lucide-react'
+import { Clock, Star, Users, MessageSquare, MapPin } from 'lucide-react'
 import HeroVisual from '@/components/HeroVisual'
 import ServiceCard from '@/components/ServiceCard'
 import LanguageGrid from '@/components/LanguageGrid'
@@ -30,10 +30,10 @@ const LANGUAGE_REGIONS = [
 ]
 
 const WHY_CARDS = [
-  { Icon: Clock,         title: 'Prompt Delivery',  desc: 'Deadline-driven workflows with milestone tracking on every project.', tint: '#FFF6DA', color: '#D89E0B' },
-  { Icon: Star,          title: 'Expert Linguists', desc: 'Every project is handled by native-speaking subject-matter experts — not generalist translators.', tint: '#E0E5F3', color: '#06184F' },
-  { Icon: Users,         title: 'Native Linguists', desc: 'Subject-matter experts who live the language, not just speak it.',   tint: '#E8EFFA', color: '#1466DB' },
-  { Icon: MessageSquare, title: 'One Producer',     desc: 'A single point of contact who owns your project end-to-end.',        tint: '#DEF5EE', color: '#0E7C66' },
+  { Icon: Clock,         title: 'Prompt Delivery',  stat: '< 4 hrs turnaround',  accentColor: '#F5B819', desc: 'Deadline-driven workflows with milestone tracking on every project.', tint: '#FFF6DA', color: '#D89E0B' },
+  { Icon: Star,          title: 'Expert Linguists', stat: 'Native speakers only', accentColor: '#1466DB', desc: 'Every project is handled by native-speaking subject-matter experts — not generalist translators.', tint: '#E0E5F3', color: '#06184F' },
+  { Icon: Users,         title: 'Native Linguists', stat: '120+ languages',       accentColor: '#1466DB', desc: 'Subject-matter experts who live the language, not just speak it.',   tint: '#E8EFFA', color: '#1466DB' },
+  { Icon: MessageSquare, title: 'One Producer',     stat: '1 point of contact',   accentColor: '#10B981', desc: 'A single point of contact who owns your project end-to-end.',        tint: '#DEF5EE', color: '#0E7C66' },
 ]
 
 
@@ -43,17 +43,26 @@ const TESTIMONIALS = [
   { quote: 'On time, every time. The producer model means we never chase status updates.',                                name: 'Priya Raman',    role: 'Marketing Director',   company: 'Houseplant Beauty' },
 ]
 
+const REGION_COLORS = {
+  'West Delhi':    '#1466DB',
+  'Central Delhi': '#7C3AED',
+  'North Delhi':   '#059669',
+  'South Delhi':   '#EA580C',
+  'East Delhi':    '#DC2626',
+  'NCR':           '#0891B2',
+}
+
 const LOCATIONS = [
-  { city: 'Uttam Nagar',       type: 'HQ',             isHQ: true },
-  { city: 'Connaught Place',   type: 'Production hub' },
-  { city: 'Hauz Khas',         type: 'Production hub' },
-  { city: 'Dwarka',            type: 'Production hub' },
-  { city: 'Rohini',            type: 'Production hub' },
-  { city: 'Saket',             type: 'Production hub' },
-  { city: 'Laxmi Nagar',       type: 'Production hub' },
-  { city: 'Noida Sector 18',   type: 'Production hub' },
-  { city: 'Gurgaon Cyber City', type: 'Production hub' },
-  { city: 'Greater Noida',     type: 'Production hub' },
+  { city: 'Uttam Nagar',        type: 'HQ',             isHQ: true,  region: 'West Delhi'    },
+  { city: 'Connaught Place',    type: 'Production hub',              region: 'Central Delhi'  },
+  { city: 'Hauz Khas',          type: 'Production hub',              region: 'South Delhi'    },
+  { city: 'Dwarka',             type: 'Production hub',              region: 'West Delhi'     },
+  { city: 'Rohini',             type: 'Production hub',              region: 'North Delhi'    },
+  { city: 'Saket',              type: 'Production hub',              region: 'South Delhi'    },
+  { city: 'Laxmi Nagar',        type: 'Production hub',              region: 'East Delhi'     },
+  { city: 'Noida Sector 18',    type: 'Production hub',              region: 'NCR'            },
+  { city: 'Gurgaon Cyber City', type: 'Production hub',              region: 'NCR'            },
+  { city: 'Greater Noida',      type: 'Production hub',              region: 'NCR'            },
 ]
 
 const INDUSTRY_EMOJIS = ['⚖️', '🏥', '⚙️', '🛒', '🎮', '🎓', '📺']
@@ -68,10 +77,10 @@ const INDUSTRY_BLURBS = [
 ]
 
 const STEPS = [
-  { num: '01', label: 'Brief',   desc: 'Share your documents, scope, and deadline.',              accent: true  },
-  { num: '02', label: 'Build',   desc: 'We assemble the right native-specialist team.',            accent: false },
-  { num: '03', label: 'Review',  desc: 'Human QA and proofreading on every project.',      accent: false },
-  { num: '04', label: 'Deliver', desc: 'Files in your format, on time, guaranteed.',              accent: false },
+  { num: '01', label: 'Brief',   desc: 'Share your service, language pair and deadline',        accent: true  },
+  { num: '02', label: 'Build',   desc: 'We assign a vetted native linguist within 2 hours',     accent: false },
+  { num: '03', label: 'Review',  desc: 'Senior editor reviews every word before delivery',      accent: false },
+  { num: '04', label: 'Deliver', desc: 'Final files in your preferred format, on time',         accent: false },
 ]
 
 export default function HomePage() {
@@ -243,15 +252,26 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+        <div style={{ position: 'relative', marginBottom: -2, lineHeight: 0 }}>
+          <svg
+            viewBox="0 0 1440 80"
+            preserveAspectRatio="none"
+            className="hero-wave"
+            style={{ width: '100%', height: 80, display: 'block' }}
+          >
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" />
+          </svg>
+        </div>
       </section>
 
 
       {/* ─── WHY US ─── */}
       {/* A3 + B3 */}
       <section
+        className="bg-whyus"
         style={{
           padding: '80px 24px',
-          background: 'var(--tint)',
         }}
       >
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
@@ -264,7 +284,7 @@ export default function HomePage() {
           </h2>
           {/* B3 — 2×2 on mobile, 4-col on lg */}
           <div className="why-grid">
-            {WHY_CARDS.map(({ Icon, title, desc, tint, color }, idx) => (
+            {WHY_CARDS.map(({ Icon, title, desc, color, stat, accentColor }, idx) => (
               <div
                 key={title}
                 className="bls-card why-card"
@@ -272,10 +292,11 @@ export default function HomePage() {
                   padding: 24,
                   position: 'relative',
                   overflow: 'hidden',
-                  borderLeft: `4px solid ${color}`,
+                  borderTop: `4px solid ${accentColor}`,
+                  transition: 'all 0.2s ease',
                 }}
               >
-                {/* A3 — Decorative number, hidden on mobile */}
+                {/* Decorative number, hidden on mobile */}
                 <span
                   className="why-card-number"
                   aria-hidden="true"
@@ -291,12 +312,13 @@ export default function HomePage() {
                   {String(idx + 1).padStart(2, '0')}
                 </span>
 
-                <div style={{ width: 48, height: 48, borderRadius: 12, background: tint, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-                  <Icon size={22} color={color} />
+                <div style={{ width: 64, height: 64, borderRadius: 16, background: `${color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+                  <Icon size={28} color={color} />
                 </div>
-                <h3 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 18, fontWeight: 600, color: 'var(--ink)', marginBottom: 8, letterSpacing: '-0.02em', position: 'relative' }}>
+                <h3 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 18, fontWeight: 600, color: 'var(--ink)', marginBottom: 4, letterSpacing: '-0.02em', position: 'relative' }}>
                   {title}
                 </h3>
+                <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: accentColor, marginTop: 4, marginBottom: 8 }}>{stat}</span>
                 <p style={{ fontSize: 14, color: 'var(--muted-c)', lineHeight: 1.65, margin: 0 }}>{desc}</p>
               </div>
             ))}
@@ -306,7 +328,7 @@ export default function HomePage() {
 
       {/* ─── SERVICES ─── */}
       {/* A4 + B4 */}
-      <section style={{ background: 'var(--bg)', borderTop: '1px solid var(--rule)', padding: '80px 24px' }}>
+      <section className="bg-lightblue" style={{ borderTop: '1px solid var(--rule)', padding: '80px 24px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 40, gap: 16, flexWrap: 'wrap' }}>
             <div>
@@ -616,7 +638,7 @@ export default function HomePage() {
 
       {/* ─── PROCESS ─── */}
       {/* B9 */}
-      <section style={{ background: 'var(--tint)', padding: '80px 24px' }}>
+      <section className="bg-lightblue" style={{ padding: '80px 24px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--blue)', marginBottom: 12, textAlign: 'center' }}>
           How we work
@@ -635,13 +657,13 @@ export default function HomePage() {
                   className="process-step-circle"
                   style={{
                     width: 64, height: 64, borderRadius: '50%',
-                    background: accent ? 'var(--yellow)' : 'transparent',
-                    border: accent ? 'none' : '2px solid var(--navy)',
+                    background: accent ? '#F5B819' : '#ffffff',
+                    border: accent ? 'none' : '2px solid #1466DB',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     boxShadow: accent ? '0 8px 24px -6px rgba(245,184,25,.4)' : 'none',
                   }}
                 >
-                  <span style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 20, fontWeight: 700, color: 'var(--navy)' }}>
+                  <span style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 20, fontWeight: 800, color: '#06184F' }}>
                     {num}
                   </span>
                 </div>
@@ -649,7 +671,7 @@ export default function HomePage() {
                   <h3 style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 20, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 8 }}>
                     {label}
                   </h3>
-                  <p style={{ fontSize: 14, color: 'var(--muted-c)', lineHeight: 1.65, margin: 0 }}>{desc}</p>
+                  <p style={{ fontSize: 13, color: '#5A6577', lineHeight: 1.65, margin: '6px auto 0', maxWidth: 160, textAlign: 'center' }}>{desc}</p>
                 </div>
               </div>
             ))}
@@ -661,7 +683,7 @@ export default function HomePage() {
 
       {/* ─── TESTIMONIALS ─── */}
       {/* A9 + B11 */}
-      <section style={{ background: 'var(--bg)', padding: '80px 24px' }}>
+      <section className="bg-soft" style={{ padding: '80px 24px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
           <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--blue)', marginBottom: 12 }}>
@@ -705,7 +727,7 @@ export default function HomePage() {
 
       {/* ─── LOCATIONS ─── */}
       {/* B12 */}
-      <section style={{ background: 'var(--tint)', padding: '80px 24px' }}>
+      <section className="bg-lightblue" style={{ padding: '80px 24px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--blue)', marginBottom: 12 }}>
             06 · Locations
@@ -715,25 +737,54 @@ export default function HomePage() {
           </h2>
           {/* B12 — 2-col mobile, auto-fill desktop */}
           <div className="locations-grid">
-            {LOCATIONS.map(({ city, type, isHQ }) => (
-              <div key={city} className="bls-card" style={{ padding: '20px 18px' }}>
-                <span
+            {LOCATIONS.map(({ city, isHQ, region }) => {
+              const regionColor = REGION_COLORS[region] || '#1466DB'
+              return (
+                <div
+                  key={city}
+                  className="bls-card location-card"
                   style={{
+                    padding: '14px 16px',
+                    borderRadius: 12,
+                    position: 'relative',
+                    ...(isHQ ? {
+                      background: 'linear-gradient(135deg, #06184F, #1466DB)',
+                      border: 'none',
+                    } : {}),
+                  }}
+                >
+                  {isHQ && (
+                    <span style={{
+                      position: 'absolute', top: 10, right: 10,
+                      background: '#F5B819', color: '#06184F',
+                      fontSize: 10, fontWeight: 700, padding: '2px 8px',
+                      borderRadius: 999,
+                    }}>HQ</span>
+                  )}
+                  <p style={{
+                    fontFamily: 'Bricolage Grotesque, system-ui',
+                    fontSize: 16, fontWeight: 600,
+                    color: isHQ ? '#ffffff' : 'var(--ink)',
+                    margin: '0 0 6px',
+                    letterSpacing: '-0.01em',
+                    display: 'flex', alignItems: 'center', gap: 6,
+                  }}>
+                    <MapPin size={14} color={isHQ ? '#ffffff' : regionColor} style={{ flexShrink: 0 }} />
+                    {city}
+                  </p>
+                  <span style={{
                     display: 'inline-block',
                     fontFamily: 'JetBrains Mono, monospace',
                     fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.14em',
-                    color: isHQ ? '#06184F' : type === 'Production hub' ? 'var(--blue)' : 'var(--yellow-2)',
-                    background: isHQ ? '#F5B819' : type === 'Production hub' ? 'var(--tint-2)' : '#FFF6DA',
-                    padding: '3px 8px', borderRadius: 999, marginBottom: 10,
-                  }}
-                >
-                  {isHQ ? 'HQ' : type}
-                </span>
-                <p style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 16, fontWeight: 600, color: 'var(--ink)', margin: 0, letterSpacing: '-0.01em' }}>
-                  {city}
-                </p>
-              </div>
-            ))}
+                    color: isHQ ? 'rgba(255,255,255,0.85)' : regionColor,
+                    background: isHQ ? 'rgba(255,255,255,0.15)' : `${regionColor}18`,
+                    padding: '3px 8px', borderRadius: 999,
+                  }}>
+                    {region}
+                  </span>
+                </div>
+              )
+            })}
           </div>
           <div style={{ textAlign: 'center', marginTop: 32 }}>
             <Link href="/locations" className="btn ghost">All locations →</Link>

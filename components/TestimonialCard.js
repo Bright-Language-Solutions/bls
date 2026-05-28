@@ -7,26 +7,37 @@ export default function TestimonialCard({ quote, name, role, company }) {
     .toUpperCase()
 
   return (
-    <div className="bls-card p-6 flex flex-col gap-4" style={{ height: '100%', position: 'relative', overflow: 'hidden' }}>
-      {/* Decorative quote mark */}
-      <span
+    <div
+      style={{
+        height: '100%',
+        position: 'relative',
+        overflow: 'hidden',
+        background: 'var(--card-bg)',
+        padding: '28px 24px',
+        borderRadius: 16,
+        boxShadow: '0 4px 20px rgba(6,24,79,0.06)',
+        borderLeft: '4px solid #F5B819',
+        borderTop: 'none',
+        borderRight: 'none',
+        borderBottom: 'none',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+      }}
+    >
+      {/* Large decorative quote mark */}
+      <div
         aria-hidden="true"
         style={{
-          position: 'absolute',
-          top: -8,
-          right: 16,
-          fontFamily: 'Bricolage Grotesque, system-ui',
-          fontSize: 96,
-          fontWeight: 700,
-          color: 'var(--ink)',
-          opacity: 0.04,
-          lineHeight: 1,
+          fontSize: 80,
+          lineHeight: 0.8,
+          color: '#F5B819',
+          opacity: 0.25,
+          fontFamily: 'Georgia, serif',
+          marginBottom: 12,
           userSelect: 'none',
-          pointerEvents: 'none',
         }}
-      >
-        &ldquo;
-      </span>
+      >&ldquo;</div>
 
       {/* Stars */}
       <div style={{ display: 'flex', gap: 3 }}>
@@ -38,7 +49,7 @@ export default function TestimonialCard({ quote, name, role, company }) {
       </div>
 
       {/* Quote */}
-      <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.7, fontStyle: 'italic', flex: 1, position: 'relative' }}>
+      <p style={{ fontSize: 16, color: 'var(--muted-c)', lineHeight: 1.7, fontStyle: 'italic', flex: 1 }}>
         &ldquo;{quote}&rdquo;
       </p>
 
@@ -50,6 +61,7 @@ export default function TestimonialCard({ quote, name, role, company }) {
             background: 'var(--navy)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
+            boxShadow: '0 0 0 3px #F5B81940, 0 0 0 1px #F5B819',
           }}
         >
           <span style={{ fontFamily: 'Bricolage Grotesque, system-ui', fontSize: 14, fontWeight: 600, color: '#fff' }}>
